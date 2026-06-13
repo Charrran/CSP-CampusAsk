@@ -60,6 +60,30 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    // Notify all faculty assigned to this subject
+    try {
+      const assignedFaculty = await db.user.findMany({
+        where: {
+          role: "FACULTY",
+          subjects: { some: { id: subjectId } },
+        },
+        select: { id: true },
+      });
+
+      if (assignedFaculty.length > 0) {
+        await db.notification.createMany({
+          data: assignedFaculty.map((f) => ({
+            userId: f.id,
+            message: `New doubt posted in ${doubt.subject.name}: ${title}`,
+            referenceId: doubt.id,
+          })),
+        });
+      }
+    } catch (notifErr) {
+      // Don't fail the doubt creation if notification fails
+      console.error("Error creating notifications:", notifErr);
+    }
+
     return Response.json({ success: true, data: doubt }, { status: 201 });
   } catch (error) {
     console.error("Error creating doubt:", error);

@@ -66,6 +66,19 @@ export async function POST(
       });
     }
 
+    // Notify the doubt owner about the new answer
+    try {
+      await db.notification.create({
+        data: {
+          userId: doubt.userId,
+          message: `Your doubt "${doubt.title}" received a new answer from ${session.name}`,
+          referenceId: doubtId,
+        },
+      });
+    } catch (notifErr) {
+      console.error("Error creating notification:", notifErr);
+    }
+
     return Response.json({ success: true, data: answer }, { status: 201 });
   } catch (error) {
     console.error("Error creating answer:", error);

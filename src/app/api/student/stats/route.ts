@@ -19,14 +19,17 @@ export async function GET() {
       );
     }
 
-    const [totalDoubts, answeredDoubts, openDoubts, savedCount, recentDoubts] =
+    const [totalDoubts, openDoubts, answeredDoubts, resolvedDoubts, savedCount, recentDoubts] =
       await Promise.all([
         db.doubt.count({ where: { userId: session.userId } }),
         db.doubt.count({
-          where: { userId: session.userId, status: { in: ["ANSWERED", "RESOLVED"] } },
+          where: { userId: session.userId, status: "OPEN" },
         }),
         db.doubt.count({
-          where: { userId: session.userId, status: "OPEN" },
+          where: { userId: session.userId, status: "ANSWERED" },
+        }),
+        db.doubt.count({
+          where: { userId: session.userId, status: "RESOLVED" },
         }),
         db.savedDoubt.count({ where: { userId: session.userId } }),
         db.doubt.findMany({
@@ -45,8 +48,9 @@ export async function GET() {
       success: true,
       data: {
         totalDoubts,
-        answeredDoubts,
         openDoubts,
+        answeredDoubts,
+        resolvedDoubts,
         savedCount,
         recentDoubts,
       },

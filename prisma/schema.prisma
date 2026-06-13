@@ -35,6 +35,7 @@ model User {
   email     String   @unique
   password  String
   role      Role     @default(STUDENT)
+  isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
 
   // Faculty ↔ Subject (many-to-many)
@@ -56,8 +57,10 @@ model User {
   savedDoubts SavedDoubt[]
 
   // Upvotes given
-  upvotes Upvote[]
+  upvotes      Upvote[]
   doubtUpvotes DoubtUpvote[]
+
+  // Availability slots (faculty)
   availabilitySlots AvailabilitySlot[]
 
   @@map("users")
@@ -98,6 +101,10 @@ model Doubt {
   title       String
   description String
   status      DoubtStatus @default(OPEN)
+  tags        String[]    @default([])
+  isFlagged   Boolean     @default(false)
+  flagReason  String?
+  isRemoved   Boolean     @default(false)
   createdAt   DateTime    @default(now())
 
   // Relations
@@ -115,15 +122,19 @@ model Doubt {
   // Users who saved this doubt
   savedBy SavedDoubt[]
 
-  @@map("doubts")
+  // Upvotes on this doubt
   upvotes DoubtUpvote[]
+
+  @@map("doubts")
 }
 
 model DoubtUpvote {
-  userId String
+  userId  String
   doubtId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   doubt Doubt @relation(fields: [doubtId], references: [id], onDelete: Cascade)
+
   @@id([userId, doubtId])
   @@map("doubt_upvotes")
 }
@@ -131,7 +142,11 @@ model DoubtUpvote {
 model Answer {
   id          String   @id @default(cuid())
   content     String
+  summary     String?
   upvoteCount Int      @default(0)
+  isFlagged   Boolean  @default(false)
+  flagReason  String?
+  isRemoved   Boolean  @default(false)
   createdAt   DateTime @default(now())
 
   // Relations
@@ -151,16 +166,19 @@ model Meeting {
   id            String        @id @default(cuid())
   status        MeetingStatus @default(PENDING)
   requestedTime DateTime
+  notes         String?
   createdAt     DateTime      @default(now())
 
   // Relations
   studentId String
   facultyId String
   subjectId String
+  slotId    String?
 
-  student User    @relation("StudentMeetings", fields: [studentId], references: [id], onDelete: Cascade)
-  faculty User    @relation("FacultyMeetings", fields: [facultyId], references: [id], onDelete: Cascade)
-  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  student User              @relation("StudentMeetings", fields: [studentId], references: [id], onDelete: Cascade)
+  faculty User              @relation("FacultyMeetings", fields: [facultyId], references: [id], onDelete: Cascade)
+  subject Subject           @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  slot    AvailabilitySlot? @relation(fields: [slotId], references: [id], onDelete: SetNull)
 
   @@map("meetings")
 }
@@ -171,16 +189,20 @@ model AvailabilitySlot {
   date      DateTime
   startTime DateTime
   endTime   DateTime
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isBooked  Boolean  @default(false)
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meetings Meeting[]
 
   @@map("availability_slots")
 }
 
 model Notification {
-  id        String   @id @default(cuid())
-  message   String
-  isRead    Boolean  @default(false)
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  message     String
+  isRead      Boolean  @default(false)
+  referenceId String?
+  createdAt   DateTime @default(now())
 
   // Relations
   userId String

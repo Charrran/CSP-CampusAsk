@@ -19,9 +19,21 @@ export async function GET() {
       );
     }
 
-    const [answeredByMe, totalOpen, recentAnswers] = await Promise.all([
+    // Get faculty's assigned subject IDs
+    const faculty = await db.user.findUnique({
+      where: { id: session.userId },
+      select: { subjects: { select: { id: true } } },
+    });
+    const assignedSubjectIds = faculty?.subjects.map((s) => s.id) ?? [];
+
+    const [answeredByMe, openInMySubjects, recentAnswers] = await Promise.all([
       db.answer.count({ where: { userId: session.userId } }),
-      db.doubt.count({ where: { status: "OPEN" } }),
+      db.doubt.count({
+        where: {
+          status: "OPEN",
+          subjectId: { in: assignedSubjectIds },
+        },
+      }),
       db.answer.findMany({
         where: { userId: session.userId },
         include: {
@@ -42,7 +54,8 @@ export async function GET() {
       success: true,
       data: {
         answeredByMe,
-        totalOpen,
+        openInMySubjects,
+        assignedSubjectCount: assignedSubjectIds.length,
         recentAnswers,
       },
     });
