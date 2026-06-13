@@ -1,0 +1,192 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────
+
+enum Role {
+  STUDENT
+  FACULTY
+  ADMIN
+}
+
+enum DoubtStatus {
+  OPEN
+  ANSWERED
+  RESOLVED
+}
+
+enum MeetingStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  RESCHEDULED
+}
+
+// ─── Models ──────────────────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(STUDENT)
+  createdAt DateTime @default(now())
+
+  // Faculty ↔ Subject (many-to-many)
+  subjects Subject[] @relation("FacultySubjects")
+
+  // User's doubts (as student)
+  doubts  Doubt[]
+  // User's answers (as faculty)
+  answers Answer[]
+
+  // Meetings
+  meetingsAsStudent Meeting[] @relation("StudentMeetings")
+  meetingsAsFaculty Meeting[] @relation("FacultyMeetings")
+
+  // Notifications
+  notifications Notification[]
+
+  // Saved doubts (bookmarks)
+  savedDoubts SavedDoubt[]
+
+  // Upvotes given
+  upvotes Upvote[]
+
+  @@map("users")
+}
+
+model Subject {
+  id   String @id @default(cuid())
+  name String @unique
+
+  // Chapters in this subject
+  chapters Chapter[]
+
+  // Doubts in this subject
+  doubts Doubt[]
+
+  // Meetings for this subject
+  meetings Meeting[]
+
+  // Faculty who teach this subject
+  faculty User[] @relation("FacultySubjects")
+
+  @@map("subjects")
+}
+
+model Chapter {
+  id        String @id @default(cuid())
+  name      String
+  subjectId String
+
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  doubts  Doubt[]
+
+  @@map("chapters")
+}
+
+model Doubt {
+  id          String      @id @default(cuid())
+  title       String
+  description String
+  status      DoubtStatus @default(OPEN)
+  createdAt   DateTime    @default(now())
+
+  // Relations
+  userId    String
+  subjectId String
+  chapterId String
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  // Answers to this doubt
+  answers Answer[]
+
+  // Users who saved this doubt
+  savedBy SavedDoubt[]
+
+  @@map("doubts")
+}
+
+model Answer {
+  id          String   @id @default(cuid())
+  content     String
+  upvoteCount Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  // Relations
+  doubtId String
+  userId  String
+
+  doubt Doubt @relation(fields: [doubtId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Upvotes on this answer
+  upvotes Upvote[]
+
+  @@map("answers")
+}
+
+model Meeting {
+  id            String        @id @default(cuid())
+  status        MeetingStatus @default(PENDING)
+  requestedTime DateTime
+  createdAt     DateTime      @default(now())
+
+  // Relations
+  studentId String
+  facultyId String
+  subjectId String
+
+  student User    @relation("StudentMeetings", fields: [studentId], references: [id], onDelete: Cascade)
+  faculty User    @relation("FacultyMeetings", fields: [facultyId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@map("meetings")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  // Relations
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+// ─── Join Tables ─────────────────────────────────────────
+
+model SavedDoubt {
+  userId  String
+  doubtId String
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  doubt Doubt @relation(fields: [doubtId], references: [id], onDelete: Cascade)
+
+  @@id([userId, doubtId])
+  @@map("saved_doubts")
+}
+
+model Upvote {
+  userId   String
+  answerId String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answer Answer @relation(fields: [answerId], references: [id], onDelete: Cascade)
+
+  @@id([userId, answerId])
+  @@map("upvotes")
+}
