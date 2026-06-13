@@ -57,6 +57,8 @@ model User {
 
   // Upvotes given
   upvotes Upvote[]
+  doubtUpvotes DoubtUpvote[]
+  availabilitySlots AvailabilitySlot[]
 
   @@map("users")
 }
@@ -114,6 +116,16 @@ model Doubt {
   savedBy SavedDoubt[]
 
   @@map("doubts")
+  upvotes DoubtUpvote[]
+}
+
+model DoubtUpvote {
+  userId String
+  doubtId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  doubt Doubt @relation(fields: [doubtId], references: [id], onDelete: Cascade)
+  @@id([userId, doubtId])
+  @@map("doubt_upvotes")
 }
 
 model Answer {
@@ -151,6 +163,17 @@ model Meeting {
   subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
 
   @@map("meetings")
+}
+
+model AvailabilitySlot {
+  id        String   @id @default(cuid())
+  userId    String
+  date      DateTime
+  startTime DateTime
+  endTime   DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("availability_slots")
 }
 
 model Notification {
