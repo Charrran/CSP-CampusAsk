@@ -2,7 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyTokenEdge, COOKIE_NAME } from "@/lib/auth";
 
 // Routes that don't require authentication
-const publicPaths = ["/login", "/register", "/api/auth"];
+const publicPaths = [
+  "/login",
+  "/register",
+  "/api/auth",
+  "/api/doubts",
+  "/api/subjects",
+  "/api/answers",
+  "/api/student",
+  "/api/faculty",
+];
 
 function isPublicPath(pathname: string): boolean {
   return publicPaths.some(
@@ -33,7 +42,7 @@ function getPathRole(pathname: string): string | null {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Allow public paths
+  // Allow public paths (API routes handle their own auth)
   if (isPublicPath(pathname)) {
     // If authenticated and visiting login/register, redirect to dashboard
     const token = request.cookies.get(COOKIE_NAME)?.value;
@@ -44,6 +53,36 @@ export async function middleware(request: NextRequest) {
           new URL(getRoleDashboard(payload.role), request.url)
         );
       }
+    }
+    return NextResponse.next();
+  }
+
+  // Root path — show landing page for unauthenticated, redirect for authenticated
+  if (pathname === "/") {
+    const token = request.cookies.get(COOKIE_NAME)?.value;
+    if (token) {
+      const payload = await verifyTokenEdge(token);
+      if (payload) {
+        return NextResponse.redirect(
+          new URL(getRoleDashboard(payload.role), request.url)
+        );
+      }
+    }
+    // No token or invalid token — let the landing page render
+    return NextResponse.next();
+  }
+
+  // /doubts/* pages — require authentication but no specific role
+  if (pathname.startsWith("/doubts")) {
+    const token = request.cookies.get(COOKIE_NAME)?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+    const payload = await verifyTokenEdge(token);
+    if (!payload) {
+      const response = NextResponse.redirect(new URL("/login", request.url));
+      response.cookies.delete(COOKIE_NAME);
+      return response;
     }
     return NextResponse.next();
   }
@@ -63,13 +102,6 @@ export async function middleware(request: NextRequest) {
     const response = NextResponse.redirect(new URL("/login", request.url));
     response.cookies.delete(COOKIE_NAME);
     return response;
-  }
-
-  // Root path — redirect to role dashboard
-  if (pathname === "/") {
-    return NextResponse.redirect(
-      new URL(getRoleDashboard(payload.role), request.url)
-    );
   }
 
   // Role-based access control

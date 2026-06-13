@@ -33,3 +33,35 @@ export const loginSchema = z.object({
 
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
+
+// ─── Doubt Validations ───────────────────────────────────
+
+export const createDoubtSchema = z.object({
+  title: z
+    .string()
+    .min(5, "Title must be at least 5 characters")
+    .max(200, "Title must be less than 200 characters")
+    .trim(),
+  description: z
+    .string()
+    .min(10, "Description must be at least 10 characters")
+    .max(5000, "Description must be less than 5000 characters")
+    .trim(),
+  subjectId: z.string().min(1, "Please select a subject"),
+  chapterId: z.string().min(1, "Please select a chapter"),
+  attachment: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
+});
+
+export type CreateDoubtInput = z.infer<typeof createDoubtSchema>;
+
+// ─── Answer Validations ──────────────────────────────────
+
+export const createAnswerSchema = z.object({
+  content: z
+    .string()
+    .min(10, "Answer must be at least 10 characters")
+    .max(5000, "Answer must be less than 5000 characters")
+    .trim(),
+});
+
+export type CreateAnswerInput = z.infer<typeof createAnswerSchema>;
