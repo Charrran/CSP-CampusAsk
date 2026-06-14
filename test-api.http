@@ -34,36 +34,42 @@ Content-Type: application/json
 # @name getSubjects
 GET {{baseUrl}}/subjects
 
+###
+
+@subjectId = {{getSubjects.response.body.data[0].id}}
+@chapterId = {{getSubjects.response.body.data[0].chapters[0].id}}
+
 ### =========================================
 ### PART 2: THE CORE Q&A FLOW
 ### =========================================
 
 ### 2A. Check for Similar Doubts (Duplicate Detection)
-GET {{baseUrl}}/doubts/check-similar?subjectId=REPLACE_WITH_SUBJECT_ID
+GET {{baseUrl}}/doubts/check-similar?subjectId={{subjectId}}
 
 ###
 
 ### 2B. Post a New Doubt
+# @name postDoubt
 POST {{baseUrl}}/doubts
 Content-Type: application/json
 
 {
   "title": "How does Quantum Entanglement actually work?",
   "description": "I am struggling to understand the concept of entanglement in the Classical Mechanics chapter. It feels like magic. Can someone explain?",
-  "subjectId": "REPLACE_WITH_SUBJECT_ID",
-  "chapterId": "REPLACE_WITH_CHAPTER_ID"
+  "subjectId": "{{subjectId}}",
+  "chapterId": "{{chapterId}}"
 }
 
 ###
 
 ### 2C. AI Feature: Generate Tags for the Doubt
 # Watch the AI (or NLP fallback) generate semantic tags automatically!
-POST {{baseUrl}}/doubts/REPLACE_WITH_DOUBT_ID/generate-tags
+POST {{baseUrl}}/doubts/{{postDoubt.response.body.data.id}}/generate-tags
 
 ###
 
 ### 2D. Student Saves the Doubt for Later
-POST {{baseUrl}}/doubts/REPLACE_WITH_DOUBT_ID/save
+POST {{baseUrl}}/doubts/{{postDoubt.response.body.data.id}}/save
 
 ### =========================================
 ### PART 3: FACULTY INTERACTION
@@ -84,6 +90,7 @@ Content-Type: application/json
 ###
 
 ### 3B. Login as Faculty
+# @name loginFaculty
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
@@ -95,7 +102,8 @@ Content-Type: application/json
 ###
 
 ### 3C. Post a Long Answer to the Doubt
-POST {{baseUrl}}/doubts/REPLACE_WITH_DOUBT_ID/answers
+# @name postAnswer
+POST {{baseUrl}}/doubts/{{postDoubt.response.body.data.id}}/answers
 Content-Type: application/json
 
 {
@@ -105,8 +113,7 @@ Content-Type: application/json
 ###
 
 ### 3D. AI Feature: Summarize the Long Answer
-# Watch the AI condense the long answer into a short TL;DR!
-POST {{baseUrl}}/answers/REPLACE_WITH_ANSWER_ID/summarize
+POST {{baseUrl}}/answers/{{postAnswer.response.body.data.id}}/summarize
 
 ### =========================================
 ### PART 4: MEETINGS & SCHEDULING
@@ -126,21 +133,25 @@ Content-Type: application/json
 
 ###
 
+@slotId = {{createSlot.response.body.data.id}}
+@facultyId = {{createSlot.response.body.data.userId}}
+
 ### 4B. Student views Faculty Directory (Requires Student Login!)
 # MUST include ?subjectId as a query parameter!
-GET {{baseUrl}}/faculty/directory?subjectId=REPLACE_WITH_SUBJECT_ID
+GET {{baseUrl}}/faculty/directory?subjectId={{subjectId}}
 
 ###
 
 ### 4C. Student Requests a Meeting
 # Body must match createMeetingSchema. The slotId must be valid and unbooked!
+# @name createMeeting
 POST {{baseUrl}}/meetings
 Content-Type: application/json
 
 {
-  "facultyId": "REPLACE_WITH_FACULTY_ID",
-  "subjectId": "REPLACE_WITH_SUBJECT_ID",
-  "slotId": "REPLACE_WITH_SLOT_ID",
+  "facultyId": "{{facultyId}}",
+  "subjectId": "{{subjectId}}",
+  "slotId": "{{slotId}}",
   "notes": "I need help with my physics homework"
 }
 
@@ -148,7 +159,7 @@ Content-Type: application/json
 
 ### 4D. Faculty Accepts Meeting (Requires Faculty Login!)
 # The meeting ID must be passed as a query parameter (?id=...), NOT a path parameter!
-PATCH {{baseUrl}}/meetings?id=REPLACE_WITH_MEETING_ID
+PATCH {{baseUrl}}/meetings?id={{createMeeting.response.body.data.id}}
 Content-Type: application/json
 
 {
