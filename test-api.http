@@ -1,0 +1,99 @@
+@baseUrl = http://localhost:3000/api
+
+### 1. Register a Student
+# @name registerStudent
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test Student",
+  "email": "student@test.com",
+  "password": "password123",
+  "role": "STUDENT"
+}
+
+###
+
+### 2. Login as Student (Sets HttpOnly Cookie)
+# @name loginStudent
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "student@test.com",
+  "password": "password123"
+}
+
+###
+
+### 3. Verify Authentication (Get Me)
+GET {{baseUrl}}/auth/me
+
+###
+
+### 4. Fetch Subjects (To get a subjectId for posting a doubt)
+# @name getSubjects
+GET {{baseUrl}}/subjects
+
+###
+
+### 5. Post a Doubt (Requires you to copy a subjectId and chapterId from the previous request)
+POST {{baseUrl}}/doubts
+Content-Type: application/json
+
+{
+  "title": "How does Quantum Entanglement work?",
+  "description": "I am struggling to understand the concept of entanglement in the Classical Mechanics chapter. Can someone explain?",
+  "subjectId": "REPLACE_WITH_SUBJECT_ID",
+  "chapterId": "REPLACE_WITH_CHAPTER_ID"
+}
+
+###
+
+### 6. Get Doubt Feed
+GET {{baseUrl}}/doubts
+
+###
+
+### 7. Register a Faculty Member
+# @name registerFaculty
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Dr. Smith",
+  "email": "faculty@test.com",
+  "password": "password123",
+  "role": "FACULTY"
+}
+
+###
+
+### 8. Login as Faculty (Overrides previous cookie)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "faculty@test.com",
+  "password": "password123"
+}
+
+###
+
+### 9. Post an Answer (Requires you to copy a doubtId from step 6)
+POST {{baseUrl}}/doubts/REPLACE_WITH_DOUBT_ID/answers
+Content-Type: application/json
+
+{
+  "content": "Quantum entanglement occurs when a group of particles are generated, interact, or share spatial proximity in a way such that the quantum state of each particle of the group cannot be described independently of the state of the others."
+}
+
+###
+
+### 10. Admin Analytics (Requires Admin Login)
+GET {{baseUrl}}/admin/analytics
+
+###
+
+### 11. Logout
+POST {{baseUrl}}/auth/logout
