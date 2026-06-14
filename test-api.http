@@ -112,13 +112,28 @@ POST {{baseUrl}}/answers/REPLACE_WITH_ANSWER_ID/summarize
 ### PART 4: MEETINGS & SCHEDULING
 ### =========================================
 
-### 4A. Student views Faculty Directory
-# You can see Dr. Smith and their availability here
-GET {{baseUrl}}/faculty/directory
+### 4A. Faculty Creates an Availability Slot (Requires Faculty Login!)
+# You CANNOT request a meeting unless a slot exists. Run this as Faculty first.
+# @name createSlot
+POST {{baseUrl}}/meetings/slots
+Content-Type: application/json
+
+{
+  "date": "2024-12-01T00:00:00.000Z",
+  "startTime": "2024-12-01T10:00:00.000Z",
+  "endTime": "2024-12-01T11:00:00.000Z"
+}
 
 ###
 
-### 4B. Student Requests a Meeting (Requires Student Login again!)
+### 4B. Student views Faculty Directory (Requires Student Login!)
+# MUST include ?subjectId as a query parameter!
+GET {{baseUrl}}/faculty/directory?subjectId=REPLACE_WITH_SUBJECT_ID
+
+###
+
+### 4C. Student Requests a Meeting
+# Body must match createMeetingSchema. The slotId must be valid and unbooked!
 POST {{baseUrl}}/meetings
 Content-Type: application/json
 
@@ -131,7 +146,8 @@ Content-Type: application/json
 
 ###
 
-### 4C. Faculty Accepts Meeting (Requires Faculty Login again!)
+### 4D. Faculty Accepts Meeting (Requires Faculty Login!)
+# The meeting ID must be passed as a query parameter (?id=...), NOT a path parameter!
 PATCH {{baseUrl}}/meetings?id=REPLACE_WITH_MEETING_ID
 Content-Type: application/json
 
