@@ -1,67 +1,81 @@
 @baseUrl = http://localhost:3000/api
 
-### 1. Register a Student
+### =========================================
+### PART 1: AUTHENTICATION & SETUP
+### =========================================
+
+### 1A. Register a Student
 # @name registerStudent
 POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
-  "name": "Test Student",
-  "email": "student@test.com",
+  "name": "Alice (Student)",
+  "email": "alice@test.com",
   "password": "password123",
   "role": "STUDENT"
 }
 
 ###
 
-### 2. Login as Student (Sets HttpOnly Cookie)
+### 1B. Login as Student
 # @name loginStudent
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "student@test.com",
+  "email": "alice@test.com",
   "password": "password123"
 }
 
 ###
 
-### 3. Verify Authentication (Get Me)
-GET {{baseUrl}}/auth/me
-
-###
-
-### 4. Fetch Subjects (To get a subjectId for posting a doubt)
+### 1C. Fetch Subjects & Chapters (Grab an ID from the response)
 # @name getSubjects
 GET {{baseUrl}}/subjects
 
+### =========================================
+### PART 2: THE CORE Q&A FLOW
+### =========================================
+
+### 2A. Check for Similar Doubts (Duplicate Detection)
+GET {{baseUrl}}/doubts/check-similar?subjectId=REPLACE_WITH_SUBJECT_ID
+
 ###
 
-### 5. Post a Doubt (Requires you to copy a subjectId and chapterId from the previous request)
+### 2B. Post a New Doubt
 POST {{baseUrl}}/doubts
 Content-Type: application/json
 
 {
-  "title": "How does Quantum Entanglement work?",
-  "description": "I am struggling to understand the concept of entanglement in the Classical Mechanics chapter. Can someone explain?",
+  "title": "How does Quantum Entanglement actually work?",
+  "description": "I am struggling to understand the concept of entanglement in the Classical Mechanics chapter. It feels like magic. Can someone explain?",
   "subjectId": "REPLACE_WITH_SUBJECT_ID",
   "chapterId": "REPLACE_WITH_CHAPTER_ID"
 }
 
 ###
 
-### 6. Get Doubt Feed
-GET {{baseUrl}}/doubts
+### 2C. AI Feature: Generate Tags for the Doubt
+# Watch the AI (or NLP fallback) generate semantic tags automatically!
+POST {{baseUrl}}/doubts/REPLACE_WITH_DOUBT_ID/generate-tags
 
 ###
 
-### 7. Register a Faculty Member
+### 2D. Student Saves the Doubt for Later
+POST {{baseUrl}}/doubts/REPLACE_WITH_DOUBT_ID/save
+
+### =========================================
+### PART 3: FACULTY INTERACTION
+### =========================================
+
+### 3A. Register a Faculty Member
 # @name registerFaculty
 POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
-  "name": "Dr. Smith",
+  "name": "Dr. Smith (Faculty)",
   "email": "faculty@test.com",
   "password": "password123",
   "role": "FACULTY"
@@ -69,7 +83,7 @@ Content-Type: application/json
 
 ###
 
-### 8. Login as Faculty (Overrides previous cookie)
+### 3B. Login as Faculty
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
@@ -80,20 +94,47 @@ Content-Type: application/json
 
 ###
 
-### 9. Post an Answer (Requires you to copy a doubtId from step 6)
+### 3C. Post a Long Answer to the Doubt
 POST {{baseUrl}}/doubts/REPLACE_WITH_DOUBT_ID/answers
 Content-Type: application/json
 
 {
-  "content": "Quantum entanglement occurs when a group of particles are generated, interact, or share spatial proximity in a way such that the quantum state of each particle of the group cannot be described independently of the state of the others."
+  "content": "Quantum entanglement is a physical phenomenon that occurs when a group of particles are generated, interact, or share spatial proximity in a way such that the quantum state of each particle of the group cannot be described independently of the state of the others, including when the particles are separated by a large distance. The topic of quantum entanglement is at the heart of the disparity between classical and quantum physics."
 }
 
 ###
 
-### 10. Admin Analytics (Requires Admin Login)
-GET {{baseUrl}}/admin/analytics
+### 3D. AI Feature: Summarize the Long Answer
+# Watch the AI condense the long answer into a short TL;DR!
+POST {{baseUrl}}/answers/REPLACE_WITH_ANSWER_ID/summarize
+
+### =========================================
+### PART 4: MEETINGS & SCHEDULING
+### =========================================
+
+### 4A. Student views Faculty Directory
+# You can see Dr. Smith and their availability here
+GET {{baseUrl}}/faculty/directory
 
 ###
 
-### 11. Logout
-POST {{baseUrl}}/auth/logout
+### 4B. Student Requests a Meeting (Requires Student Login again!)
+POST {{baseUrl}}/meetings
+Content-Type: application/json
+
+{
+  "facultyId": "REPLACE_WITH_FACULTY_ID",
+  "subjectId": "REPLACE_WITH_SUBJECT_ID",
+  "slotId": "REPLACE_WITH_SLOT_ID",
+  "notes": "I need help with my physics homework"
+}
+
+###
+
+### 4C. Faculty Accepts Meeting (Requires Faculty Login again!)
+PATCH {{baseUrl}}/meetings?id=REPLACE_WITH_MEETING_ID
+Content-Type: application/json
+
+{
+  "status": "ACCEPTED"
+}
