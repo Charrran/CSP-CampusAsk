@@ -81,7 +81,7 @@ export async function GET(request: NextRequest) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const where: any = {};
+    const where: any = { isRemoved: false };
     if (subjectId) where.subjectId = subjectId;
 
     // Fetch candidates from the same subject (limit to recent 200 for performance)

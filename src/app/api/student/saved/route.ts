@@ -26,7 +26,10 @@ export async function GET(request: NextRequest) {
 
     const [savedDoubts, totalCount] = await Promise.all([
       db.savedDoubt.findMany({
-        where: { userId: session.userId },
+        where: {
+          userId: session.userId,
+          doubt: { isRemoved: false },
+        },
         include: {
           doubt: {
             include: {
@@ -41,7 +44,12 @@ export async function GET(request: NextRequest) {
         skip: (page - 1) * limit,
         take: limit,
       }),
-      db.savedDoubt.count({ where: { userId: session.userId } }),
+      db.savedDoubt.count({
+        where: {
+          userId: session.userId,
+          doubt: { isRemoved: false },
+        },
+      }),
     ]);
 
     const doubts = savedDoubts.map((sd) => sd.doubt);

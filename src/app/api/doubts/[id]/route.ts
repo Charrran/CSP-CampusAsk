@@ -48,11 +48,24 @@ export async function GET(
       );
     }
 
+    // Hide removed doubts from non-admin users
+    if (doubt.isRemoved && session.role !== "ADMIN") {
+      return Response.json(
+        { success: false, error: "Doubt not found" },
+        { status: 404 }
+      );
+    }
+
+    // Filter out removed answers for non-admin users
+    const visibleAnswers = session.role === "ADMIN"
+      ? doubt.answers
+      : doubt.answers.filter((a) => !a.isRemoved);
+
     // Transform to include user-specific flags
     const data = {
       ...doubt,
       isSaved: doubt.savedBy.length > 0,
-      answers: doubt.answers.map((answer) => ({
+      answers: visibleAnswers.map((answer) => ({
         ...answer,
         isUpvoted: answer.upvotes.length > 0,
         upvotes: undefined, // don't leak the upvotes array

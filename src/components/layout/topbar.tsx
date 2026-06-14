@@ -59,11 +59,9 @@ export function Topbar({ title }: TopbarProps) {
 
           {/* User dropdown */}
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="relative h-9 gap-2 pl-2 pr-3 cursor-pointer"
-              >
+            <DropdownMenuTrigger
+              className="relative inline-flex h-9 items-center gap-2 pl-2 pr-3 cursor-pointer rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
                 <Avatar className="h-7 w-7">
                   <AvatarFallback className="bg-primary/10 text-primary text-xs font-medium">
                     {initials}
@@ -72,7 +70,6 @@ export function Topbar({ title }: TopbarProps) {
                 <span className="hidden sm:inline-block text-sm font-medium">
                   {user?.name?.split(" ")[0]}
                 </span>
-              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
               <div className="px-2 py-1.5">

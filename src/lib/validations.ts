@@ -16,7 +16,7 @@ export const registerSchema = z.object({
     .min(6, "Password must be at least 6 characters")
     .max(100, "Password must be less than 100 characters"),
   role: z.enum(["STUDENT", "FACULTY", "ADMIN"], {
-    required_error: "Please select a role",
+    error: "Please select a role",
   }),
 });
 

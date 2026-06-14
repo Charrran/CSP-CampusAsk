@@ -21,6 +21,12 @@ export async function GET(request: NextRequest) {
     // Build where clause
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const where: any = {};
+
+    // Exclude removed doubts for non-admin users
+    if (session.role !== "ADMIN") {
+      where.isRemoved = false;
+    }
+
     if (query) {
       where.OR = [
         { title: { contains: query, mode: "insensitive" } },
