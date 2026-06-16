@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 export default function StudentQAPage() {
   return (
@@ -44,9 +45,11 @@ export default function StudentQAPage() {
               </span>
               <span className="text-on-surface-variant text-sm font-medium">32 minutes ago</span>
             </div>
-            <h3 className="text-3xl font-display font-bold text-on-surface mb-4 leading-tight group-hover:text-primary transition-colors">
-              How does the "Self" in Existentialism differ from the Buddhist concept of "Anatta"?
-            </h3>
+            <Link href="/student/qa/1">
+              <h3 className="text-3xl font-display font-bold text-on-surface mb-4 leading-tight group-hover:text-primary transition-colors">
+                How does the "Self" in Existentialism differ from the Buddhist concept of "Anatta"?
+              </h3>
+            </Link>
             <p className="text-on-surface-variant leading-relaxed mb-6 line-clamp-3">
               I'm currently writing a comparative thesis on Sartre and Early Buddhist texts. While Sartre emphasizes radical freedom and the "nothingness" of consciousness, the concept of Anatta seems to deny the permanent self entirely. Is there a point of convergence in their understanding of...
             </p>
@@ -222,9 +225,9 @@ export default function StudentQAPage() {
       </div>
 
       {/* Floating Action Button */}
-      <button className="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+      <Link href="/student/qa/new" className="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
         <span className="material-symbols-outlined text-3xl">edit_note</span>
-      </button>
+      </Link>
     </>
   );
 }
