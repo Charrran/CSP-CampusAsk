@@ -46,6 +46,61 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Stitch Theme Colors */
+  --color-on-primary-fixed: #401a08;
+  --color-surface-container-low: #f6f0e8;
+  --color-surface: #faf5ee;
+  --color-surface-container: #f2ece4;
+  --color-on-primary-container: #fbe8d8;
+  --color-inverse-primary: #f0a878;
+  --color-on-secondary-container: #605850;
+  --color-tertiary-fixed: #fce0e0;
+  --color-on-error-container: #7a1a10;
+  --color-outline-variant: #d8d0c8;
+  --color-error: #c0392b;
+  --color-on-tertiary: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-error-container: #fce4e0;
+  --color-surface-tint: #c2652a;
+  --color-surface-container-highest: #e6e0d6;
+  --color-inverse-on-surface: #faf5ee;
+  --color-surface-dim: #dcd6cc;
+  --color-outline: #9a9088;
+  --color-surface-container-high: #ece6dc;
+  --color-secondary-fixed-dim: #cec6be;
+  --color-on-tertiary-fixed: #2e1515;
+  --color-tertiary: #8c3c3c;
+  --color-surface-variant: #ece6dc;
+  --color-on-primary-fixed-variant: #8a4518;
+  --color-primary-fixed-dim: #f0a878;
+  --color-tertiary-fixed-dim: #e8a0a0;
+  --color-on-tertiary-container: #3a2020;
+  --color-on-surface: #3a302a;
+  --color-on-primary: #ffffff;
+  --color-primary-fixed: #fbe8d8;
+  --color-on-secondary-fixed: #2a2420;
+  --color-primary-container: #e08850;
+  --color-on-background: #3a302a;
+  --color-surface-bright: #faf5ee;
+  --color-on-tertiary-fixed-variant: #6e3030;
+  --color-on-surface-variant: #605850;
+  --color-tertiary-container: #d47070;
+  --color-secondary-fixed: #eae2da;
+  --color-secondary-container: #eae2da;
+  --color-on-secondary-fixed-variant: #504840;
+  --color-on-error: #ffffff;
+  --color-on-secondary: #ffffff;
+  --color-inverse-surface: #3a302a;
+  --color-umber-brand: #5C3826;
+  --color-sand-border: #E3DACD;
+
+  /* Fonts */
+  --font-headline: "EB Garamond", serif;
+  --font-display: "EB Garamond", serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Manrope", sans-serif;
+  --font-professor: "Cormorant Garamond", serif;
 }
 
 :root {
