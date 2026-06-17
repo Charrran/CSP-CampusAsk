@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { DoubtStatus, Prisma } from "@prisma/client";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 
@@ -18,9 +19,7 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get("page") ?? "1", 10);
     const limit = parseInt(searchParams.get("limit") ?? "12", 10);
 
-    // Build where clause
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const where: any = {};
+    const where: Prisma.DoubtWhereInput = {};
 
     // Exclude removed doubts for non-admin users
     if (session.role !== "ADMIN") {
@@ -35,7 +34,9 @@ export async function GET(request: NextRequest) {
     }
     if (subjectId) where.subjectId = subjectId;
     if (chapterId) where.chapterId = chapterId;
-    if (status && ["OPEN", "ANSWERED", "RESOLVED"].includes(status)) where.status = status as any;
+    if (status && ["OPEN", "ANSWERED", "RESOLVED"].includes(status)) {
+      where.status = status as DoubtStatus;
+    }
 
     const [doubts, totalCount] = await Promise.all([
       db.doubt.findMany({

@@ -1,202 +1,224 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
+import { fetchJson } from "@/lib/api";
+import type { ApiResponse, AvailabilitySlot, FacultyDirectoryItem, Meeting, MeetingListResponse, Subject } from "@/types";
 
 export default function BookingPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 3;
+  const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [faculty, setFaculty] = useState<FacultyDirectoryItem[]>([]);
+  const [slots, setSlots] = useState<AvailabilitySlot[]>([]);
+  const [meetings, setMeetings] = useState<Meeting[]>([]);
+  const [selectedSubjectId, setSelectedSubjectId] = useState("");
+  const [selectedFacultyId, setSelectedFacultyId] = useState("");
+  const [selectedSlotId, setSelectedSlotId] = useState("");
+  const [notes, setNotes] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNext = () => {
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      // Complete booking
-      setIsModalOpen(false);
-      setCurrentStep(1);
+  const selectedFaculty = useMemo(
+    () => faculty.find((member) => member.id === selectedFacultyId),
+    [faculty, selectedFacultyId]
+  );
+
+  useEffect(() => {
+    Promise.all([
+      fetchJson<ApiResponse<Subject[]>>("/api/subjects"),
+      fetchJson<ApiResponse<MeetingListResponse>>("/api/meetings?limit=4"),
+    ])
+      .then(([subjectResponse, meetingResponse]) => {
+        const nextSubjects = subjectResponse.data ?? [];
+        setSubjects(nextSubjects);
+        setMeetings(meetingResponse.data?.meetings ?? []);
+        setSelectedSubjectId(nextSubjects[0]?.id ?? "");
+      })
+      .catch(() => toast.error("Failed to load booking data"))
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  useEffect(() => {
+    if (!selectedSubjectId) return;
+
+    fetchJson<ApiResponse<FacultyDirectoryItem[]>>(`/api/faculty/directory?subjectId=${selectedSubjectId}`)
+      .then((response) => {
+        setFaculty(response.data ?? []);
+      })
+      .catch(() => toast.error("Failed to load faculty"));
+  }, [selectedSubjectId]);
+
+  useEffect(() => {
+    if (!selectedFacultyId) return;
+
+    fetchJson<ApiResponse<AvailabilitySlot[]>>(`/api/meetings/slots?facultyId=${selectedFacultyId}`)
+      .then((response) => setSlots(response.data ?? []))
+      .catch(() => toast.error("Failed to load slots"));
+  }, [selectedFacultyId]);
+
+  const handleSubmit = async () => {
+    if (!selectedSubjectId || !selectedFacultyId || !selectedSlotId) {
+      toast.error("Choose a subject, faculty member, and slot");
+      return;
     }
-  };
 
-  const handlePrev = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
+    setIsSubmitting(true);
+    try {
+      await fetchJson<ApiResponse<Meeting>>("/api/meetings", {
+        method: "POST",
+        body: JSON.stringify({
+          subjectId: selectedSubjectId,
+          facultyId: selectedFacultyId,
+          slotId: selectedSlotId,
+          notes,
+        }),
+      });
+      toast.success("Meeting requested successfully");
+      const meetingResponse = await fetchJson<ApiResponse<MeetingListResponse>>("/api/meetings?limit=4");
+      setMeetings(meetingResponse.data?.meetings ?? []);
+      setSelectedSlotId("");
+      setNotes("");
+    } catch {
+      toast.error("Failed to request meeting");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <>
-      <header className="flex justify-between items-end mb-12">
+      <header className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-12">
         <div>
-          <h2 className="text-5xl font-headline italic mb-2">Welcome back, Jordan.</h2>
-          <p className="text-on-surface-variant font-body">Your academic progress is looking strong this term.</p>
+          <h2 className="text-5xl font-headline italic mb-2">Faculty Bookings</h2>
+          <p className="text-on-surface-variant font-body">Reserve office hours with available faculty for focused academic guidance.</p>
         </div>
-        <div className="flex items-center gap-4">
-          <button className="bg-primary text-on-primary px-6 py-3 rounded-md shadow-sm font-medium transition-transform active:scale-95">
-            View Schedule
-          </button>
+        <div className="bg-[#ece6dc] px-4 py-2 rounded-lg flex items-center gap-3 shadow-sm border border-outline-variant/30">
+          <span className="material-symbols-outlined text-primary">event_available</span>
+          <span className="font-label text-sm font-bold text-[#3a302a]">{meetings.length} recent requests</span>
         </div>
       </header>
 
-      {/* Bento Grid Preview */}
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-8 bg-surface-container-low p-8 rounded-md border border-sand-border/40">
-          <h3 className="text-2xl font-headline mb-6">Upcoming Classes</h3>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-surface rounded-md border border-sand-border/20">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary-fixed flex items-center justify-center rounded-md">
-                  <span className="material-symbols-outlined text-primary">history_edu</span>
-                </div>
-                <div>
-                  <h4 className="font-professor text-xl">Advanced Rhetoric</h4>
-                  <p className="text-sm text-on-surface-variant">Mrs. Eleanor Vance • 10:00 AM</p>
-                </div>
-              </div>
-              <span className="text-xs font-bold px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full">JOINING</span>
+        <section className="col-span-12 lg:col-span-8 bg-surface-container-low p-8 rounded-md border border-sand-border/40">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-2xl font-headline">Schedule Consultation</h3>
+            {isLoading && <span className="text-xs font-bold text-secondary uppercase tracking-widest">Loading</span>}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Subject</label>
+              <select
+                value={selectedSubjectId}
+                onChange={(event) => {
+                  setSelectedSubjectId(event.target.value);
+                  setFaculty([]);
+                  setSelectedFacultyId("");
+                  setSlots([]);
+                  setSelectedSlotId("");
+                }}
+                className="w-full bg-white border border-sand-border focus:ring-primary focus:border-primary rounded-md px-4 py-3 font-body text-on-surface outline-none"
+              >
+                {subjects.map((subject) => (
+                  <option key={subject.id} value={subject.id}>{subject.name}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Faculty</label>
+              <select
+                value={selectedFacultyId}
+                onChange={(event) => {
+                  setSelectedFacultyId(event.target.value);
+                  setSlots([]);
+                  setSelectedSlotId("");
+                }}
+                className="w-full bg-white border border-sand-border focus:ring-primary focus:border-primary rounded-md px-4 py-3 font-body text-on-surface outline-none"
+              >
+                <option value="">Select faculty</option>
+                {faculty.map((member) => (
+                  <option key={member.id} value={member.id}>{member.name}</option>
+                ))}
+              </select>
             </div>
           </div>
-        </div>
-        <div className="col-span-12 lg:col-span-4 bg-umber-brand text-on-primary-container p-8 rounded-md flex flex-col justify-between">
-          <span className="material-symbols-outlined text-4xl opacity-50 mb-4">calendar_month</span>
+
+          <div className="mt-8">
+            <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">Available Slots</label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+              {slots.map((slot) => (
+                <button
+                  key={slot.id}
+                  type="button"
+                  onClick={() => setSelectedSlotId(slot.id)}
+                  className={`py-3 px-4 border rounded-md text-left transition-colors ${
+                    selectedSlotId === slot.id
+                      ? "border-primary bg-primary-container text-on-primary-container"
+                      : "bg-white border-sand-border hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  <span className="block font-label text-sm font-bold">
+                    {new Date(slot.startTime).toLocaleDateString([], { month: "short", day: "numeric" })}
+                  </span>
+                  <span className="block text-xs mt-1">
+                    {new Date(slot.startTime).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} - {new Date(slot.endTime).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                  </span>
+                </button>
+              ))}
+              {!slots.length && (
+                <div className="sm:col-span-2 xl:col-span-3 border border-dashed border-sand-border rounded-md p-8 text-center text-sm text-on-surface-variant">
+                  {selectedFacultyId ? "No available slots for this faculty member." : "Select a faculty member to view slots."}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Discussion Notes</label>
+            <textarea
+              value={notes}
+              onChange={(event) => setNotes(event.target.value)}
+              className="w-full bg-white border border-sand-border focus:ring-primary focus:border-primary rounded-md px-4 py-3 font-body text-on-surface outline-none"
+              placeholder="Briefly describe what you'd like to focus on..."
+              rows={4}
+            />
+          </div>
+
+          <button
+            disabled={isSubmitting}
+            onClick={handleSubmit}
+            className="mt-6 bg-primary text-on-primary px-8 py-3 rounded-md shadow-sm font-bold transition-transform active:scale-95 disabled:opacity-70"
+          >
+            {isSubmitting ? "Requesting..." : "Request Meeting"}
+          </button>
+        </section>
+
+        <aside className="col-span-12 lg:col-span-4 bg-umber-brand text-on-primary-container p-8 rounded-md flex flex-col gap-8">
           <div>
-            <h3 className="text-3xl font-headline leading-tight mb-4">Book Office Hours</h3>
-            <p className="text-sm opacity-80 mb-6">Connect with teachers for personalized guidance on your projects or coursework.</p>
-            <button
-              className="w-full bg-surface text-on-surface py-3 rounded-md font-bold hover:bg-primary-fixed transition-colors"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Schedule Now
-            </button>
+            <span className="material-symbols-outlined text-4xl opacity-50 mb-4">calendar_month</span>
+            <h3 className="text-3xl font-headline leading-tight mb-4">Upcoming Requests</h3>
+            <p className="text-sm opacity-80">Track faculty responses and consultation times from your latest booking requests.</p>
           </div>
-        </div>
-      </div>
 
-      {/* BOOKING MODAL */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1A120E]/40 backdrop-blur-sm">
-          <div className="bg-surface w-full max-w-2xl rounded-md shadow-2xl border border-sand-border overflow-hidden transform transition-all duration-300 scale-100 opacity-100">
-            {/* Modal Header */}
-            <div className="p-6 border-b border-sand-border flex justify-between items-center bg-surface-container-lowest">
-              <div>
-                <h2 className="text-2xl font-headline text-on-surface">Teacher Consultation</h2>
-                <p className="text-xs text-on-surface-variant font-body tracking-wider uppercase">
-                  Step {currentStep} of {totalSteps}
-                </p>
+          <div className="space-y-4">
+            {meetings.map((meeting) => (
+              <div key={meeting.id} className="bg-white/10 border border-white/10 rounded-md p-4">
+                <p className="font-professor text-xl text-white">{meeting.faculty?.name ?? selectedFaculty?.name ?? "Faculty"}</p>
+                <p className="text-xs opacity-80 mt-1">{meeting.subject?.name ?? "Academic consultation"}</p>
+                <div className="mt-3 flex items-center justify-between text-xs font-bold">
+                  <span>{new Date(meeting.requestedTime).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}</span>
+                  <span className="bg-surface text-on-surface px-2 py-1 rounded">{meeting.status}</span>
+                </div>
               </div>
-              <button
-                className="p-2 hover:bg-surface-container rounded-full transition-colors"
-                onClick={() => setIsModalOpen(false)}
-              >
-                <span className="material-symbols-outlined">close</span>
-              </button>
-            </div>
-            
-            {/* Progress Bar */}
-            <div className="h-1 w-full bg-surface-container">
-              <div
-                className="h-full bg-primary transition-all duration-500"
-                style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-              ></div>
-            </div>
-
-            <div className="p-8 max-h-[70vh] overflow-y-auto">
-              {/* STEP 1: SELECT TEACHER */}
-              {currentStep === 1 && (
-                <div className="step-content">
-                  <h3 className="text-xl font-headline mb-6">Choose a Teacher</h3>
-                  <div className="grid grid-cols-1 gap-4">
-                    {/* Teacher 1 */}
-                    <label className="relative flex items-center p-4 border border-sand-border rounded-md cursor-pointer hover:bg-surface-container-low transition-colors group">
-                      <input className="hidden peer" name="teacher" type="radio" defaultChecked />
-                      <div className="w-14 h-14 bg-surface-container-highest rounded-md overflow-hidden mr-4 border border-sand-border/50 flex items-center justify-center">
-                        <span className="material-symbols-outlined">person</span>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-professor text-xl text-on-surface">Mr. Julian Sterling</h4>
-                        <p className="text-xs text-on-surface-variant font-body">Department of History</p>
-                      </div>
-                      <div className="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 transition-opacity">
-                        check_circle
-                      </div>
-                    </label>
-                    {/* Teacher 2 */}
-                    <label className="relative flex items-center p-4 border border-sand-border rounded-md cursor-pointer hover:bg-surface-container-low transition-colors group">
-                      <input className="hidden peer" name="teacher" type="radio" />
-                      <div className="w-14 h-14 bg-surface-container-highest rounded-md overflow-hidden mr-4 border border-sand-border/50 flex items-center justify-center">
-                         <span className="material-symbols-outlined">person</span>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-professor text-xl text-on-surface">Ms. Elena Thorne</h4>
-                        <p className="text-xs text-on-surface-variant font-body">Literature & Arts</p>
-                      </div>
-                      <div className="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 transition-opacity">
-                        check_circle
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 2: PICK TIME */}
-              {currentStep === 2 && (
-                <div className="step-content">
-                  <h3 className="text-xl font-headline mb-6">Available Time Slots</h3>
-                  <p className="text-sm text-on-surface-variant mb-4 font-body italic">Monday, October 14th</p>
-                  <div className="grid grid-cols-3 gap-3">
-                    <button className="py-3 px-4 border border-sand-border rounded-md text-sm font-medium hover:border-primary hover:text-primary transition-all">09:00 AM</button>
-                    <button className="py-3 px-4 border border-primary bg-primary-container text-on-primary-container rounded-md text-sm font-medium">10:30 AM</button>
-                    <button className="py-3 px-4 border border-sand-border rounded-md text-sm font-medium hover:border-primary hover:text-primary transition-all">11:15 AM</button>
-                    <button className="py-3 px-4 border border-sand-border rounded-md text-sm font-medium hover:border-primary hover:text-primary transition-all">01:00 PM</button>
-                    <button className="py-3 px-4 border border-sand-border rounded-md text-sm font-medium opacity-40 cursor-not-allowed" disabled>02:30 PM</button>
-                    <button className="py-3 px-4 border border-sand-border rounded-md text-sm font-medium hover:border-primary hover:text-primary transition-all">04:00 PM</button>
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 3: TOPIC */}
-              {currentStep === 3 && (
-                <div className="step-content">
-                  <h3 className="text-xl font-headline mb-6">What would you like to discuss?</h3>
-                  <div className="space-y-6">
-                    <div>
-                      <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Subject / Topic</label>
-                      <input
-                        className="w-full bg-surface-container-low border border-sand-border focus:ring-primary focus:border-primary rounded-md px-4 py-3 font-body text-on-surface outline-none"
-                        placeholder="e.g. Project proposal review"
-                        type="text"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Detailed Notes (Optional)</label>
-                      <textarea
-                        className="w-full bg-surface-container-low border border-sand-border focus:ring-primary focus:border-primary rounded-md px-4 py-3 font-body text-on-surface outline-none"
-                        placeholder="Briefly describe what you'd like to focus on..."
-                        rows={4}
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Modal Footer */}
-            <div className="p-6 border-t border-sand-border flex justify-between items-center bg-surface-container-lowest">
-              <button
-                className={`text-on-surface-variant font-medium text-sm hover:text-on-surface transition-colors ${currentStep === 1 ? 'invisible' : ''}`}
-                onClick={handlePrev}
-              >
-                Back
-              </button>
-              <button
-                className="bg-umber-brand text-on-primary px-8 py-3 rounded-md font-bold transition-all hover:shadow-lg active:scale-95"
-                onClick={handleNext}
-              >
-                {currentStep === totalSteps ? "Confirm Booking" : "Continue"}
-              </button>
-            </div>
+            ))}
+            {!meetings.length && (
+              <div className="bg-white/10 border border-white/10 rounded-md p-6 text-sm opacity-80">
+                No meetings requested yet.
+              </div>
+            )}
           </div>
-        </div>
-      )}
+        </aside>
+      </div>
     </>
   );
 }

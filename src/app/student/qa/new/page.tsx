@@ -1,16 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { toast } from "sonner";
+import { fetchJson } from "@/lib/api";
 
 export default function NewInquiryPage() {
-  const [subject, setSubject] = useState<string>("Mathematics");
+  const [subjectId, setSubjectId] = useState<string>("");
+  const [chapterId, setChapterId] = useState<string>("");
+  const [title, setTitle] = useState("");
   const [inquiryText, setInquiryText] = useState("");
   const [tags, setTags] = useState<string[]>(["Calculus", "Derivatives"]);
   const [tagInput, setTagInput] = useState("");
-  const [priority, setPriority] = useState("Standard Inquiry");
+  const [attachment, setAttachment] = useState("");
+  const [domains, setDomains] = useState<Array<{ id: string; name: string; chapters?: Array<{ id: string; name: string }> }>>([]);
+  useEffect(() => {
+    fetchJson<{ success: boolean; data?: Array<{ id: string; name: string; chapters?: Array<{ id: string; name: string }> }> }>("/api/subjects")
+      .then((response) => {
+        const subjects = response.data ?? [];
+        setDomains(subjects);
+        if (subjects[0]) {
+          setSubjectId(subjects[0].id);
+          setChapterId(subjects[0].chapters?.[0]?.id ?? "");
+        }
+      })
+      .catch((err) => console.error("Failed to load subjects", err));
+  }, []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
@@ -30,18 +45,30 @@ export default function NewInquiryPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inquiryText.trim()) {
-      toast.error("Please provide an inquiry premise");
+    if (!title.trim() || !inquiryText.trim() || !subjectId || !chapterId) {
+      toast.error("Please complete the inquiry details");
       return;
     }
-
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await fetchJson("/api/doubts", {
+        method: "POST",
+        body: JSON.stringify({
+          title,
+          description: tags.length ? `${inquiryText}\n\nTags: ${tags.join(", ")}` : inquiryText,
+          subjectId,
+          chapterId,
+          attachment,
+        }),
+      });
       toast.success("Inquiry submitted successfully!");
       router.push("/student/qa");
-    }, 1500);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to submit inquiry.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -61,6 +88,10 @@ export default function NewInquiryPage() {
             <div className="flex items-center gap-3 text-sm text-secondary font-label">
               <span className="material-symbols-outlined text-primary" style={{ fontSize: "20px" }}>visibility</span>
               <span>Private to Faculty &amp; Moderators</span>
+            </div>
+            <div className="flex items-center gap-3 text-sm text-secondary font-label">
+              <span className="material-symbols-outlined text-primary" style={{ fontSize: "20px" }}>rule</span>
+              <span>Minimum: title, chapter, and premise</span>
             </div>
           </div>
         </div>
@@ -83,29 +114,48 @@ export default function NewInquiryPage() {
         <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300 md:col-span-2">
           <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Academic Domain</label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              { id: "Mathematics", icon: "functions" },
-              { id: "Science", icon: "biotech" },
-              { id: "Literature", icon: "history_edu" },
-              { id: "Engineering", icon: "architecture" },
-            ].map((domain) => (
+            {domains.map((domain) => (
               <button
                 key={domain.id}
                 type="button"
-                onClick={() => setSubject(domain.id)}
+                onClick={() => {
+                  setSubjectId(domain.id);
+                  setChapterId(domain.chapters?.[0]?.id ?? "");
+                }}
                 className={`py-3 px-4 flex flex-col gap-2 items-start rounded-md transition-colors border ${
-                  subject === domain.id
+                  subjectId === domain.id
                     ? "bg-[#e08850] border-[#c2652a] text-[#fbe8d8]"
                     : "bg-white border-outline-variant/60 hover:bg-[#fbe8d8] text-[#3a302a]"
                 }`}
               >
-                <span className={`material-symbols-outlined ${subject === domain.id ? "text-white" : "text-primary"}`}>
-                  {domain.icon}
-                </span>
-                <span className="font-label text-sm font-medium">{domain.id}</span>
+                <span className={`material-symbols-outlined ${subjectId === domain.id ? "text-white" : "text-primary"}`}>menu_book</span>
+                <span className="font-label text-sm font-medium">{domain.name}</span>
               </button>
             ))}
           </div>
+        </div>
+
+        <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300">
+          <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Inquiry Title</label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full px-3 py-2 border border-outline-variant/60 rounded-md bg-white focus:ring-1 focus:ring-primary focus:border-primary font-label text-sm text-[#3a302a] placeholder:text-outline/60"
+            placeholder="Summarize your doubt"
+          />
+        </div>
+
+        <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300">
+          <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Chapter</label>
+          <select
+            value={chapterId}
+            onChange={(e) => setChapterId(e.target.value)}
+            className="w-full px-3 py-2 border border-outline-variant/60 rounded-md bg-white focus:ring-1 focus:ring-primary focus:border-primary font-label text-sm text-[#3a302a]"
+          >
+            {(domains.find((domain) => domain.id === subjectId)?.chapters ?? []).map((chapter) => (
+              <option key={chapter.id} value={chapter.id}>{chapter.name}</option>
+            ))}
+          </select>
         </div>
 
         {/* Section 2: Inquiry Premise (Rich Text Area) */}
@@ -153,16 +203,13 @@ export default function NewInquiryPage() {
         {/* Section 4: Urgency & Submission */}
         <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
           <div>
-            <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Priority level</label>
-            <select
-              value={priority}
-              onChange={(e) => setPriority(e.target.value)}
+            <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Attachment URL</label>
+            <input
+              value={attachment}
+              onChange={(e) => setAttachment(e.target.value)}
               className="w-full px-3 py-2 border border-outline-variant/60 rounded-md bg-white focus:ring-1 focus:ring-primary focus:border-primary font-label text-sm text-[#3a302a]"
-            >
-              <option>Standard Inquiry</option>
-              <option>Exam Impending</option>
-              <option>Thesis Critical</option>
-            </select>
+              placeholder="Optional"
+            />
           </div>
           <button
             type="submit"

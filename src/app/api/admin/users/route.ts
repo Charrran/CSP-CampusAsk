@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
+import { Prisma, Role } from "@prisma/client";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { z } from "zod";
 
 // GET /api/admin/users — paginated user list with activity counts, search, and role filter
 export async function GET(request: NextRequest) {
@@ -20,8 +20,7 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get("search");
     const role = searchParams.get("role");
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const where: any = {};
+    const where: Prisma.UserWhereInput = {};
     if (search) {
       where.OR = [
         { name: { contains: search, mode: "insensitive" } },
@@ -29,7 +28,7 @@ export async function GET(request: NextRequest) {
       ];
     }
     if (role && ["STUDENT", "FACULTY", "ADMIN"].includes(role)) {
-      where.role = role;
+      where.role = role as Role;
     }
 
     const [users, totalCount] = await Promise.all([

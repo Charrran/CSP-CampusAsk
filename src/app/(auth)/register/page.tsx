@@ -46,7 +46,7 @@ export default function RegisterPage() {
     }
   }
 
-  async function onSubmit(data: any) {
+  async function onSubmit(data: RegisterInput & { confirmPassword?: string; institution?: string; terms?: boolean }) {
     if (data.password !== data.confirmPassword) {
       toast.error("Passwords do not match");
       return;
