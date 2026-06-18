@@ -105,7 +105,7 @@ export default function FacultyQAHubPage() {
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex items-center gap-2">
-                        <Link href={`/student/qa/${inquiry.id}`}>
+                        <Link href={`/faculty/qa/${inquiry.id}`}>
                           <h5 className="font-headline text-xl font-medium text-[#3a302a] group-hover:text-primary transition-colors">{inquiry.title}</h5>
                         </Link>
                       </div>
@@ -119,7 +119,7 @@ export default function FacultyQAHubPage() {
                           <span className="material-symbols-outlined text-sm">schedule</span> {new Date(inquiry.createdAt).toLocaleDateString()}
                         </span>
                       </div>
-                      <Link href={`/student/qa/${inquiry.id}`} className="bg-primary text-white text-xs px-4 py-1.5 rounded-lg font-bold hover:bg-primary/90 transition-colors shadow-sm">
+                      <Link href={`/faculty/qa/${inquiry.id}`} className="bg-primary text-white text-xs px-4 py-1.5 rounded-lg font-bold hover:bg-primary/90 transition-colors shadow-sm">
                         Reply
                       </Link>
                     </div>

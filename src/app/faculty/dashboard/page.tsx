@@ -79,7 +79,7 @@ export default function FacultyDashboardPage() {
           </div>
           <div className="space-y-6">
             {recentAnswers.map((answer) => (
-              <Link key={answer.id} href={`/student/qa/${answer.doubt.id}`} className="block group p-6 rounded-xl bg-white/50 border border-transparent hover:border-outline-variant/60 hover:shadow-sm transition-all cursor-pointer">
+              <Link key={answer.id} href={`/faculty/qa/${answer.doubt.id}`} className="block group p-6 rounded-xl bg-white/50 border border-transparent hover:border-outline-variant/60 hover:shadow-sm transition-all cursor-pointer">
                 <div className="flex justify-between items-start mb-3">
                   <span className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-inter font-bold rounded-full uppercase tracking-tighter">
                     {answer.doubt.subject?.name ?? "Subject"}

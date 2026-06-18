@@ -42,20 +42,7 @@ export default function FacultyLayout({ children }: { children: ReactNode }) {
             <span className="material-symbols-outlined">forum</span>
             <span className="font-inter font-medium text-sm">Questions</span>
           </Link>
-          <Link
-            href="/faculty/groups"
-            className="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim/70 hover:bg-white/5 hover:text-white rounded-xl transition-all duration-200"
-          >
-            <span className="material-symbols-outlined">groups</span>
-            <span className="font-inter font-medium text-sm">Study Groups</span>
-          </Link>
-          <Link
-            href="/faculty/library"
-            className="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim/70 hover:bg-white/5 hover:text-white rounded-xl transition-all duration-200"
-          >
-            <span className="material-symbols-outlined">local_library</span>
-            <span className="font-inter font-medium text-sm">Library</span>
-          </Link>
+
           <Link
             href="/faculty/analytics"
             className="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim/70 hover:bg-white/5 hover:text-white rounded-xl transition-all duration-200"
@@ -70,13 +57,7 @@ export default function FacultyLayout({ children }: { children: ReactNode }) {
             New Inquiry
           </button>
           <div className="h-px bg-white/10 mx-4 mb-4"></div>
-          <Link
-            href="/faculty/support"
-            className="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim/50 hover:text-white transition-colors"
-          >
-            <span className="material-symbols-outlined">help</span>
-            <span className="font-inter font-medium text-sm">Support</span>
-          </Link>
+
           <LogoutButton className="w-full flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim/50 hover:text-white transition-colors text-left">
             <span className="material-symbols-outlined">logout</span>
             <span className="font-inter font-medium text-sm">Logout</span>
