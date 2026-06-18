@@ -43,13 +43,6 @@ export default function StudentLayout({ children }: { children: ReactNode }) {
             <span className="text-sm font-medium tracking-tight">Bookings</span>
           </Link>
           <div className="mt-auto pt-4 border-t border-white/10">
-            <Link
-              href="/settings"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-all"
-            >
-              <span className="material-symbols-outlined">settings</span>
-              <span className="text-sm font-medium tracking-tight">Settings</span>
-            </Link>
             <LogoutButton className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-all text-left">
               <span className="material-symbols-outlined">logout</span>
               <span className="text-sm font-medium tracking-tight">Logout</span>

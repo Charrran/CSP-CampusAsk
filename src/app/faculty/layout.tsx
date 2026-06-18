@@ -71,13 +71,6 @@ export default function FacultyLayout({ children }: { children: ReactNode }) {
           </button>
           <div className="h-px bg-white/10 mx-4 mb-4"></div>
           <Link
-            href="/faculty/settings"
-            className="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim/50 hover:text-white transition-colors"
-          >
-            <span className="material-symbols-outlined">settings</span>
-            <span className="font-inter font-medium text-sm">Settings</span>
-          </Link>
-          <Link
             href="/faculty/support"
             className="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim/50 hover:text-white transition-colors"
           >

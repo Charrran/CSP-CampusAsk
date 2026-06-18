@@ -97,7 +97,7 @@ export default function RegisterPage() {
         </div>
         <div className="relative z-10">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-primary text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+            <span className="material-symbols-outlined text-on-primary-container text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>
               auto_stories
             </span>
             <h1 className="font-display text-3xl font-bold text-[#fbe8d8] tracking-tight">Vidya Setu</h1>
@@ -137,7 +137,7 @@ export default function RegisterPage() {
         {/* Mobile Header Only */}
         <div className="md:hidden w-full mb-12 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+            <span className="material-symbols-outlined text-primary-container text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>
               auto_stories
             </span>
             <h1 className="font-display text-xl font-bold text-on-surface">Vidya Setu</h1>
@@ -234,12 +234,12 @@ export default function RegisterPage() {
                   {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-on-surface-variant" htmlFor="institution">University / College</label>
+                  <label className="text-sm font-bold text-on-surface-variant" htmlFor="institution">School</label>
                   <input
                     {...register("institution")}
                     className="w-full bg-white border border-outline-variant/60 rounded-lg p-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline/60"
                     id="institution"
-                    placeholder="Delhi Technological University"
+                    placeholder="Delhi Public School"
                     type="text"
                   />
                 </div>

@@ -28,7 +28,7 @@ export default function SavedDoubtsPage() {
       <header className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <h2 className="text-4xl font-display font-bold text-on-surface mb-2">Saved Doubts</h2>
-          <p className="text-on-surface-variant max-w-lg">Keep important academic threads close for review and follow-up.</p>
+          <p className="text-[#605850] max-w-lg">Keep important academic threads close for review and follow-up.</p>
         </div>
         <div className="relative w-full md:w-80">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
@@ -44,7 +44,7 @@ export default function SavedDoubtsPage() {
       <section className="bg-surface-container-lowest border border-outline-variant/40 rounded-lg shadow-sm overflow-hidden">
         <div className="px-6 py-4 bg-[#f6f0e8]/70 border-b border-outline-variant/40 flex items-center justify-between">
           <h3 className="font-headline text-2xl text-[#3a302a]">Bookmarked Threads</h3>
-          <span className="text-xs font-bold text-secondary uppercase tracking-widest">{filteredDoubts.length} saved</span>
+          <span className="text-xs font-bold text-[#605850] uppercase tracking-widest">{filteredDoubts.length} saved</span>
         </div>
         <div className="divide-y divide-outline-variant/30">
           {filteredDoubts.map((doubt) => (
@@ -60,17 +60,17 @@ export default function SavedDoubtsPage() {
                     </span>
                   </div>
                   <h4 className="font-headline text-2xl font-bold text-[#291B15] group-hover:text-primary transition-colors">{doubt.title}</h4>
-                  <p className="text-sm text-on-surface-variant mt-2 line-clamp-2">{doubt.description}</p>
+                  <p className="text-sm text-[#605850] mt-2 line-clamp-2">{doubt.description}</p>
                 </div>
-                <div className="text-xs text-secondary font-bold shrink-0">
+                <div className="text-xs text-[#605850] font-bold shrink-0">
                   {new Date(doubt.createdAt).toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" })}
                 </div>
               </div>
             </Link>
           ))}
           {!filteredDoubts.length && (
-            <div className="px-6 py-16 text-center text-secondary">
-              <span className="material-symbols-outlined text-4xl mb-3 text-outline">bookmark</span>
+            <div className="px-6 py-16 text-center text-[#605850]">
+              <span className="material-symbols-outlined text-4xl mb-3 text-[#9a9088]">bookmark</span>
               <p className="font-label font-bold">{isLoading ? "Loading saved doubts..." : "No saved doubts found."}</p>
             </div>
           )}

@@ -96,7 +96,7 @@ export default function ThreadDetailPage() {
   if (!doubt) {
     return (
       <div className="flex-grow max-w-7xl mx-auto w-full mt-6">
-        <div className="bg-[#f6f0e8] rounded-xl p-10 border border-outline-variant/30 text-secondary">
+        <div className="bg-[#f6f0e8] rounded-xl p-10 border border-outline-variant/30 text-[#605850]">
           {isLoading ? "Loading thread..." : "Thread not found."}
         </div>
       </div>
@@ -109,7 +109,7 @@ export default function ThreadDetailPage() {
     <div className="flex-grow max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-12 mt-6">
       <div className="flex-grow lg:w-2/3 space-y-12">
         <section className="space-y-6">
-          <div className="flex items-center gap-3 text-secondary uppercase tracking-widest text-[10px] font-label font-bold">
+          <div className="flex items-center gap-3 text-[#605850] uppercase tracking-widest text-[10px] font-label font-bold">
             <Link href={backHref} className="hover:text-primary transition-colors flex items-center gap-1">
               <span className="material-symbols-outlined text-sm">arrow_back</span>
               Back to Hub
@@ -128,7 +128,7 @@ export default function ThreadDetailPage() {
             </div>
             <div>
               <p className="font-label font-bold text-sm text-[#3a302a]">{doubt.user?.name ?? "Student"}</p>
-              <p className="text-xs text-secondary">Posted {new Date(doubt.createdAt).toLocaleString()}</p>
+              <p className="text-xs text-[#605850]">Posted {new Date(doubt.createdAt).toLocaleString()}</p>
             </div>
           </div>
           <div className="text-on-surface-variant leading-relaxed text-lg max-w-3xl font-body whitespace-pre-line">{doubt.description}</div>
@@ -149,7 +149,7 @@ export default function ThreadDetailPage() {
         </section>
 
         <section className="space-y-10 pt-8 border-t border-outline-variant/30">
-          <h3 className="font-label text-sm uppercase tracking-widest text-secondary font-bold">Faculty Responses</h3>
+          <h3 className="font-label text-sm uppercase tracking-widest text-[#605850] font-bold">Faculty Responses</h3>
           {doubt.answers.map((answer) => (
             <div key={answer.id} className="border-l-4 border-[#B85D38] pl-8 py-2">
               <div className="flex flex-wrap gap-4 items-center justify-between mb-4">
@@ -162,7 +162,7 @@ export default function ThreadDetailPage() {
                     <p className="font-label text-[10px] uppercase text-[#8c3c3c] font-extrabold tracking-tighter">Verified Expert</p>
                   </div>
                 </div>
-                <span className="text-[10px] font-label text-secondary uppercase bg-[#ece6dc] px-2 py-1 rounded font-bold">{new Date(answer.createdAt).toLocaleDateString()}</span>
+                <span className="text-[10px] font-label text-[#605850] uppercase bg-[#ece6dc] px-2 py-1 rounded font-bold">{new Date(answer.createdAt).toLocaleDateString()}</span>
               </div>
               <div className="space-y-4 text-[#3a302a] leading-relaxed font-body">
                 <p className="whitespace-pre-line">{answer.content}</p>
@@ -176,13 +176,13 @@ export default function ThreadDetailPage() {
               </div>
             </div>
           ))}
-          {!doubt.answers.length && <div className="text-sm text-secondary bg-[#f6f0e8] rounded-xl p-6 border border-outline-variant/30">No faculty responses yet.</div>}
+          {!doubt.answers.length && <div className="text-sm text-[#605850] bg-[#f6f0e8] rounded-xl p-6 border border-outline-variant/30">No faculty responses yet.</div>}
         </section>
 
         {user?.role === "FACULTY" && (
           <section className="pt-8">
             <div className="bg-[#f6f0e8] rounded-xl p-6 border border-outline-variant/30 shadow-sm">
-              <label className="font-label text-xs uppercase font-bold text-secondary mb-3 block">Contribute to the Discussion</label>
+              <label className="font-label text-xs uppercase font-bold text-[#605850] mb-3 block">Contribute to the Discussion</label>
               <textarea
                 value={reply}
                 onChange={(event) => setReply(event.target.value)}
@@ -191,8 +191,8 @@ export default function ThreadDetailPage() {
               />
               <div className="flex flex-wrap gap-4 justify-between items-center mt-4">
                 <div className="flex gap-2">
-                  <button type="button" className="material-symbols-outlined text-secondary hover:text-primary transition-all p-2 rounded hover:bg-[#ece6dc]">attach_file</button>
-                  <button type="button" className="material-symbols-outlined text-secondary hover:text-primary transition-all p-2 rounded hover:bg-[#ece6dc]">functions</button>
+                  <button type="button" className="material-symbols-outlined text-[#605850] hover:text-primary transition-all p-2 rounded hover:bg-[#ece6dc]">attach_file</button>
+                  <button type="button" className="material-symbols-outlined text-[#605850] hover:text-primary transition-all p-2 rounded hover:bg-[#ece6dc]">functions</button>
                 </div>
                 <button disabled={isSubmitting} onClick={submitAnswer} className="bg-primary text-white font-label font-bold px-6 py-2 rounded-md hover:bg-[#B85D38] transition-all shadow-sm disabled:opacity-70">
                   {isSubmitting ? "Posting..." : "Post Response"}
@@ -209,7 +209,7 @@ export default function ThreadDetailPage() {
             <span className="material-symbols-outlined text-[#B85D38] mb-4">analytics</span>
             <div>
               <p className="text-3xl font-headline font-bold text-[#3a302a]">{doubt.answers.length}</p>
-              <p className="font-label text-xs uppercase tracking-wider text-secondary font-bold">Faculty Responses</p>
+              <p className="font-label text-xs uppercase tracking-wider text-[#605850] font-bold">Faculty Responses</p>
             </div>
           </div>
           <div className="bg-white/40 backdrop-blur-md border border-outline-variant/40 p-6 rounded-2xl shadow-sm">
@@ -217,7 +217,7 @@ export default function ThreadDetailPage() {
               <span className="material-symbols-outlined text-[#B85D38]">event</span>
               <span className="text-[10px] font-label font-bold text-[#8c3c3c] bg-[#8c3c3c]/10 px-2 py-1 rounded">{doubt.status}</span>
             </div>
-            <p className="font-label text-xs uppercase tracking-wider text-secondary mb-1 font-bold">Created</p>
+            <p className="font-label text-xs uppercase tracking-wider text-[#605850] mb-1 font-bold">Created</p>
             <p className="font-headline text-xl text-[#3a302a] font-bold">{new Date(doubt.createdAt).toLocaleDateString()}</p>
           </div>
           <div className="sm:col-span-2 lg:col-span-1 bg-[#f2ece4] p-6 rounded-2xl shadow-sm border border-outline-variant/30">
@@ -227,7 +227,7 @@ export default function ThreadDetailPage() {
             </h5>
             <div className="flex flex-wrap gap-2">
               {(doubt.tags.length ? doubt.tags : [doubt.subject?.name, doubt.chapter?.name].filter(Boolean) as string[]).map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-[#ece6dc] rounded-full text-[10px] font-label font-bold text-secondary">#{tag}</span>
+                <span key={tag} className="px-3 py-1 bg-[#ece6dc] rounded-full text-[10px] font-label font-bold text-[#605850]">#{tag}</span>
               ))}
             </div>
           </div>

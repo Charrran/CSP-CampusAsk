@@ -80,9 +80,6 @@ export function Topbar({ title }: TopbarProps) {
               <DropdownMenuItem className="cursor-pointer">
                 Profile
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                Settings
-              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={logout}

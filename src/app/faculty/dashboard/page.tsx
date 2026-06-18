@@ -31,18 +31,18 @@ export default function FacultyDashboardPage() {
       <header className="flex justify-between items-center mb-10">
         <div>
           <h2 className="font-inter text-3xl font-extrabold text-[#291B15] tracking-tight">Faculty Portal</h2>
-          <p className="text-on-surface-variant font-inter text-sm font-medium opacity-70">
+          <p className="text-[#605850] font-inter text-sm font-medium">
             Welcome back, {user?.name ?? "Faculty"}
           </p>
         </div>
         <div className="flex items-center gap-6">
           <div className="relative">
-            <span className="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">notifications</span>
+            <span className="material-symbols-outlined text-[#605850] cursor-pointer hover:text-primary">notifications</span>
           </div>
           <div className="flex items-center gap-3 pl-6 border-l border-outline-variant/40">
             <div className="text-right">
               <p className="font-inter font-bold text-sm text-[#291B15]">{user?.name ?? "Faculty"}</p>
-              <p className="font-inter text-xs text-on-surface-variant">Faculty</p>
+              <p className="font-inter text-xs text-[#605850]">Faculty</p>
             </div>
             <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-surface-container-high flex items-center justify-center">
               <span className="material-symbols-outlined">person</span>
@@ -63,7 +63,7 @@ export default function FacultyDashboardPage() {
                 <span className="material-symbols-outlined">{icon}</span>
               </div>
               <div>
-                <p className="text-xs font-inter font-bold uppercase tracking-widest text-on-surface-variant/60">{label}</p>
+                <p className="text-xs font-inter font-bold uppercase tracking-widest text-[#605850]">{label}</p>
                 <p className="text-2xl font-inter font-extrabold text-[#291B15]">{value}</p>
               </div>
             </div>
@@ -84,7 +84,7 @@ export default function FacultyDashboardPage() {
                   <span className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-inter font-bold rounded-full uppercase tracking-tighter">
                     {answer.doubt.subject?.name ?? "Subject"}
                   </span>
-                  <span className="text-xs font-inter text-on-surface-variant opacity-60">{new Date(answer.createdAt).toLocaleDateString()}</span>
+                  <span className="text-xs font-inter text-[#605850]">{new Date(answer.createdAt).toLocaleDateString()}</span>
                 </div>
                 <h4 className="font-cormorant text-2xl text-[#291B15] mb-2 group-hover:text-[#B85D38] transition-colors font-bold">{answer.doubt.title}</h4>
                 <p className="font-inter text-sm text-on-secondary-container line-clamp-2 leading-relaxed mb-4">{answer.content}</p>
@@ -96,7 +96,7 @@ export default function FacultyDashboardPage() {
                 </div>
               </Link>
             ))}
-            {!recentAnswers.length && <div className="p-10 rounded-xl border border-dashed border-outline-variant/60 text-center text-sm text-on-surface-variant">No answers posted yet.</div>}
+            {!recentAnswers.length && <div className="p-10 rounded-xl border border-dashed border-outline-variant/60 text-center text-sm text-[#605850]">No answers posted yet.</div>}
           </div>
         </section>
 
@@ -108,10 +108,10 @@ export default function FacultyDashboardPage() {
                 <div key={meeting.id} className="bg-white p-4 rounded-xl border-l-4 border-[#B85D38] shadow-sm">
                   <p className="font-inter text-xs font-bold text-[#B85D38] uppercase tracking-tighter mb-1">{meeting.status}</p>
                   <p className="font-cormorant font-bold text-lg text-[#291B15]">{meeting.student?.name ?? "Student"}</p>
-                  <p className="font-inter text-xs text-on-surface-variant opacity-70">{new Date(meeting.requestedTime).toLocaleString()}</p>
+                  <p className="font-inter text-xs text-[#605850]">{new Date(meeting.requestedTime).toLocaleString()}</p>
                 </div>
               ))}
-              {!meetings.length && <p className="text-sm text-on-surface-variant">No meeting requests yet.</p>}
+              {!meetings.length && <p className="text-sm text-[#605850]">No meeting requests yet.</p>}
             </div>
           </div>
 

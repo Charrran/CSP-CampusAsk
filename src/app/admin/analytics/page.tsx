@@ -24,7 +24,7 @@ export default function AdminAnalyticsPage() {
       <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <h2 className="font-headline text-5xl text-[#3a302a] tracking-tight font-bold">System Analytics</h2>
-          <p className="font-label text-secondary mt-2">Platform-wide usage, doubt health, and response performance.</p>
+          <p className="font-label text-[#605850] mt-2">Platform-wide usage, doubt health, and response performance.</p>
         </div>
         <div className="bg-[#ece6dc] px-4 py-2 rounded-lg flex items-center gap-3 shadow-sm border border-outline-variant/30">
           <span className="material-symbols-outlined text-primary">analytics</span>
@@ -43,7 +43,7 @@ export default function AdminAnalyticsPage() {
             <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
               <span className="material-symbols-outlined">{icon}</span>
             </div>
-            <p className="font-label text-xs text-secondary uppercase tracking-widest font-semibold">{label}</p>
+            <p className="font-label text-xs text-[#605850] uppercase tracking-widest font-semibold">{label}</p>
             <h3 className="font-headline text-4xl font-bold text-[#3a302a] mt-2">{value}</h3>
           </div>
         ))}
@@ -54,9 +54,9 @@ export default function AdminAnalyticsPage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h3 className="font-headline text-2xl font-bold text-[#3a302a]">Daily Doubt Trend</h3>
-              <p className="text-sm text-secondary mt-1">New doubts created over the last 30 days.</p>
+              <p className="text-sm text-[#605850] mt-1">New doubts created over the last 30 days.</p>
             </div>
-            <span className="text-xs font-bold text-secondary uppercase tracking-widest">Live</span>
+            <span className="text-xs font-bold text-[#605850] uppercase tracking-widest">Live</span>
           </div>
           <div className="flex items-end justify-between h-72 gap-1 border-b border-outline-variant/40 pb-2">
             {(analytics?.dailyDoubtTrend ?? []).map((day) => (
@@ -97,7 +97,7 @@ export default function AdminAnalyticsPage() {
                   <span className="text-xs font-bold text-primary bg-primary-fixed px-2 py-1 rounded">{subject._count.doubts}</span>
                 </div>
               ))}
-              {!analytics?.subjectStats.length && <p className="text-sm text-secondary">No subject data available.</p>}
+              {!analytics?.subjectStats.length && <p className="text-sm text-[#605850]">No subject data available.</p>}
             </div>
           </div>
         </aside>

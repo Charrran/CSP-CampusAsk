@@ -89,7 +89,7 @@ export default function BookingPage() {
       <header className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-12">
         <div>
           <h2 className="text-5xl font-headline italic mb-2">Faculty Bookings</h2>
-          <p className="text-on-surface-variant font-body">Reserve office hours with available faculty for focused academic guidance.</p>
+          <p className="text-[#605850] font-body">Reserve office hours with available faculty for focused academic guidance.</p>
         </div>
         <div className="bg-[#ece6dc] px-4 py-2 rounded-lg flex items-center gap-3 shadow-sm border border-outline-variant/30">
           <span className="material-symbols-outlined text-primary">event_available</span>
@@ -101,12 +101,12 @@ export default function BookingPage() {
         <section className="col-span-12 lg:col-span-8 bg-surface-container-low p-8 rounded-md border border-sand-border/40">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-2xl font-headline">Schedule Consultation</h3>
-            {isLoading && <span className="text-xs font-bold text-secondary uppercase tracking-widest">Loading</span>}
+            {isLoading && <span className="text-xs font-bold text-[#605850] uppercase tracking-widest">Loading</span>}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Subject</label>
+              <label className="block text-xs font-bold text-[#605850] uppercase tracking-widest mb-2">Subject</label>
               <select
                 value={selectedSubjectId}
                 onChange={(event) => {
@@ -125,7 +125,7 @@ export default function BookingPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Faculty</label>
+              <label className="block text-xs font-bold text-[#605850] uppercase tracking-widest mb-2">Faculty</label>
               <select
                 value={selectedFacultyId}
                 onChange={(event) => {
@@ -144,7 +144,7 @@ export default function BookingPage() {
           </div>
 
           <div className="mt-8">
-            <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">Available Slots</label>
+            <label className="block text-xs font-bold text-[#605850] uppercase tracking-widest mb-3">Available Slots</label>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
               {slots.map((slot) => (
                 <button
@@ -166,7 +166,7 @@ export default function BookingPage() {
                 </button>
               ))}
               {!slots.length && (
-                <div className="sm:col-span-2 xl:col-span-3 border border-dashed border-sand-border rounded-md p-8 text-center text-sm text-on-surface-variant">
+                <div className="sm:col-span-2 xl:col-span-3 border border-dashed border-sand-border rounded-md p-8 text-center text-sm text-[#605850]">
                   {selectedFacultyId ? "No available slots for this faculty member." : "Select a faculty member to view slots."}
                 </div>
               )}
@@ -174,7 +174,7 @@ export default function BookingPage() {
           </div>
 
           <div className="mt-8">
-            <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Discussion Notes</label>
+            <label className="block text-xs font-bold text-[#605850] uppercase tracking-widest mb-2">Discussion Notes</label>
             <textarea
               value={notes}
               onChange={(event) => setNotes(event.target.value)}
@@ -197,14 +197,14 @@ export default function BookingPage() {
           <div>
             <span className="material-symbols-outlined text-4xl opacity-50 mb-4">calendar_month</span>
             <h3 className="text-3xl font-headline leading-tight mb-4">Upcoming Requests</h3>
-            <p className="text-sm opacity-80">Track faculty responses and consultation times from your latest booking requests.</p>
+            <p className="text-sm text-[#605850]">Track faculty responses and consultation times from your latest booking requests.</p>
           </div>
 
           <div className="space-y-4">
             {meetings.map((meeting) => (
               <div key={meeting.id} className="bg-white/10 border border-white/10 rounded-md p-4">
                 <p className="font-professor text-xl text-white">{meeting.faculty?.name ?? selectedFaculty?.name ?? "Faculty"}</p>
-                <p className="text-xs opacity-80 mt-1">{meeting.subject?.name ?? "Academic consultation"}</p>
+                    <p className="text-xs text-[#605850] mt-1">{meeting.subject?.name ?? "Academic consultation"}</p>
                 <div className="mt-3 flex items-center justify-between text-xs font-bold">
                   <span>{new Date(meeting.requestedTime).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}</span>
                   <span className="bg-surface text-on-surface px-2 py-1 rounded">{meeting.status}</span>
@@ -212,7 +212,7 @@ export default function BookingPage() {
               </div>
             ))}
             {!meetings.length && (
-              <div className="bg-white/10 border border-white/10 rounded-md p-6 text-sm opacity-80">
+              <div className="bg-white/10 border border-white/10 rounded-md p-6 text-sm text-[#605850]">
                 No meetings requested yet.
               </div>
             )}

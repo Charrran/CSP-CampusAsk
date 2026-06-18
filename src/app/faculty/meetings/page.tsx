@@ -48,7 +48,7 @@ export default function FacultyMeetingsPage() {
       <header className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
         <div>
           <h2 className="font-headline text-4xl text-on-surface leading-tight">Meeting Requests</h2>
-          <p className="text-on-surface-variant mt-1">Review consultation requests and keep your schedule aligned.</p>
+          <p className="text-[#605850] mt-1">Review consultation requests and keep your schedule aligned.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           {(["ALL", ...statuses] as const).map((status) => (
@@ -85,10 +85,10 @@ export default function FacultyMeetingsPage() {
                     </span>
                   </div>
                   <h4 className="font-headline text-2xl text-[#291B15] font-bold">{meeting.student?.name ?? "Student request"}</h4>
-                  <p className="text-sm text-on-surface-variant mt-1">
+                  <p className="text-sm text-[#605850] mt-1">
                     {new Date(meeting.requestedTime).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}
                   </p>
-                  {meeting.notes && <p className="text-sm text-secondary mt-3 max-w-2xl">{meeting.notes}</p>}
+                  {meeting.notes && <p className="text-sm text-[#605850] mt-3 max-w-2xl">{meeting.notes}</p>}
                 </div>
                 {meeting.status === "PENDING" && (
                   <div className="flex gap-2">
@@ -104,8 +104,8 @@ export default function FacultyMeetingsPage() {
             </div>
           ))}
           {!meetings.length && (
-            <div className="px-8 py-16 text-center text-secondary">
-              <span className="material-symbols-outlined text-4xl mb-3 text-outline">event_busy</span>
+            <div className="px-8 py-16 text-center text-[#605850]">
+              <span className="material-symbols-outlined text-4xl mb-3 text-[#9a9088]">event_busy</span>
               <p className="font-label font-bold">{isLoading ? "Loading requests..." : "No meeting requests found."}</p>
             </div>
           )}

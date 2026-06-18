@@ -52,7 +52,7 @@ export default function FacultySubjectsPage() {
       <header className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
         <div>
           <h2 className="font-headline text-4xl text-on-surface leading-tight">My Subjects</h2>
-          <p className="text-on-surface-variant mt-1">Choose the academic domains where student doubts should be routed to you.</p>
+          <p className="text-[#605850] mt-1">Choose the academic domains where student doubts should be routed to you.</p>
         </div>
         <button
           onClick={handleSave}
@@ -72,11 +72,11 @@ export default function FacultySubjectsPage() {
           </p>
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-              <p className="text-[10px] font-bold uppercase text-white/40 mb-1">Assigned</p>
+              <p className="text-[10px] font-bold uppercase text-[#605850] mb-1">Assigned</p>
               <p className="text-3xl font-headline font-bold">{assignedIds.length}</p>
             </div>
             <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-              <p className="text-[10px] font-bold uppercase text-white/40 mb-1">Available</p>
+              <p className="text-[10px] font-bold uppercase text-[#605850] mb-1">Available</p>
               <p className="text-3xl font-headline font-bold">{subjects.length}</p>
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function FacultySubjectsPage() {
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <h4 className="font-headline text-2xl font-bold">{subject.name}</h4>
-                      <p className="text-xs text-on-surface-variant mt-1">{subject.chapters?.length ?? 0} chapters available</p>
+                      <p className="text-xs text-[#605850] mt-1">{subject.chapters?.length ?? 0} chapters available</p>
                     </div>
                     <span className={`material-symbols-outlined ${isAssigned ? "text-primary" : "text-outline"}`}>
                       {isAssigned ? "check_circle" : "radio_button_unchecked"}

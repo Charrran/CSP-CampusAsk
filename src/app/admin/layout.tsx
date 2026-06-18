@@ -18,7 +18,7 @@ export default function AdminLayout({
       <aside className="fixed left-0 top-0 h-full flex flex-col py-6 z-40 bg-[#3a302a] w-64 shadow-sm">
         <div className="px-6 mb-10">
           <h1 className="font-display text-xl text-white font-bold tracking-tight">CampusAsk</h1>
-          <p className="font-label text-xs text-[#ece6dc] tracking-widest uppercase opacity-70 mt-1">Academic Portal</p>
+          <p className="font-label text-xs text-[#e8dccc] tracking-widest uppercase opacity-85 mt-1">Academic Portal</p>
         </div>
         <nav className="flex-1 space-y-2 px-4">
           <Link
@@ -67,17 +67,6 @@ export default function AdminLayout({
           </Link>
         </nav>
         <div className="mt-auto px-4 space-y-2">
-          <Link
-            href="/admin/settings"
-            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
-              pathname === "/admin/settings"
-                ? "bg-[#e08850] text-[#401a08]"
-                : "text-[#ece6dc] hover:bg-white/10"
-            }`}
-          >
-            <span className="material-symbols-outlined">settings</span>
-            <span className="font-label font-medium text-sm">Settings</span>
-          </Link>
           <LogoutButton className="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-[#ece6dc] hover:bg-white/10 text-left">
             <span className="material-symbols-outlined">logout</span>
             <span className="font-label font-medium text-sm">Logout</span>

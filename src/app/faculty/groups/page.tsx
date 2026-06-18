@@ -9,7 +9,7 @@ export default function StudyGroupsPage() {
       {/* Page Header */}
       <header className="mb-12">
         <h1 className="font-headline text-5xl lg:text-6xl text-[#3a302a] mb-2 tracking-tight">Scholarly Commons</h1>
-        <p className="font-body text-secondary max-w-2xl leading-relaxed">
+        <p className="font-body text-[#605850] max-w-2xl leading-relaxed">
           Curating collaboration and curriculum. Manage your active study cohorts and access the institutional knowledge base.
         </p>
       </header>
@@ -32,13 +32,13 @@ export default function StudyGroupsPage() {
               <span className="text-xs font-label bg-[#ece6dc] px-2 py-1 rounded font-medium">Advanced Theory</span>
             </div>
             <h3 className="font-headline text-2xl text-[#3a302a] mb-1 group-hover:text-primary transition-colors">Modernism &amp; Post-Structuralism</h3>
-            <p className="text-sm text-secondary mb-6 line-clamp-2">Weekly discussion focusing on the architectural shift post-1945 and its social implications.</p>
+            <p className="text-sm text-[#605850] mb-6 line-clamp-2">Weekly discussion focusing on the architectural shift post-1945 and its social implications.</p>
             <div className="flex items-center justify-between border-t border-outline-variant/40 pt-4">
               <div className="flex -space-x-2">
                 <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWdfJx-hv5UVgeGXb4jK6h9Q90bgEMav3SpOR69A8WtIZBi51dxeynX1avsN9Ix7MZ4oRhi45oKHbCJUloYoYfjdFQdRq46Bm8M71CEx4LEtw0Z4NqbXOSw4AQiEFf0elQpouYtZgii_iB2vieIyR0Om9wiiAPRlu0zY6-Rod-Q_TrrfMXnzfBAQB_8iiVTaZmagewfHSMe3r0fL6lPIcagLMXEc0piPHzpwWL-HSVMZVTuCK9kpdx6N6OFzqzgDB9K0JJdWuLag" width={32} height={32} />
                 <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXSZxWYhA-AjqTHRDlpV4bTAbUtNK_E1kgTkqC3hKR9fOPZbrgYp_aD5bUnTKK13vRpCmfFjrIJlja6GzsAMq_cV1n1-ciD_RwSs8yYXVRj0rmSHXXQnMoZTASVReXXuKSZaooZqg_hjnldxUhLbo1NX6wjACCecmRtBRRE32PS7H7v_aDagBp7QoYAobJpQdQCFbT0IeQKs1G0L8rL4T0Eg4caQ5KynPTNWNAgkwHyOMTkzQvFfaB8rOEGXGodLJOjUFa0lZHcw" width={32} height={32} />
                 <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuUrKSghFKrOt1JLGBeWDL0xE_dQxxO0WeNBPSq6fQ4pzkAkz_-Q794jlHOw35O9lrTSU0Cg4bsHiYrLrMv8PwIda7hWJzRvxmKhyDt-xLzwpSTCnjWDDSs6jjL1M07OYjRP9TdudN39FXYOvT1YXoGOVnQAzfE9ZEbM2Qvl5TQtWf7Cqw6kAm8A1iqtQsFoR7nhkWK8ErlLZaanXRPBb3xtYoM5fUhVyQLZnQjmoiOFh4MrIEQOND6_L49AewMV65pWFQZN3KGw" width={32} height={32} />
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[#ece6dc] flex items-center justify-center text-[10px] font-bold text-secondary">+12</div>
+                <div className="w-8 h-8 rounded-full border-2 border-white bg-[#ece6dc] flex items-center justify-center text-[10px] font-bold text-[#605850]">+12</div>
               </div>
               <div className="flex items-center gap-1 text-primary">
                 <span className="text-xs font-bold">Open Session</span>
@@ -56,12 +56,12 @@ export default function StudyGroupsPage() {
               <span className="text-xs font-label bg-[#ece6dc] px-2 py-1 rounded font-medium">Seminar B</span>
             </div>
             <h3 className="font-headline text-2xl text-[#3a302a] mb-1 group-hover:text-primary transition-colors">Comparative Literature IV</h3>
-            <p className="text-sm text-secondary mb-6 line-clamp-2">Exploring the narrative structures of South Asian magical realism in the 20th century.</p>
+            <p className="text-sm text-[#605850] mb-6 line-clamp-2">Exploring the narrative structures of South Asian magical realism in the 20th century.</p>
             <div className="flex items-center justify-between border-t border-outline-variant/40 pt-4">
               <div className="flex -space-x-2">
                 <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC8dwxEthz0DfX6uukHUPIM1PK91P3PTCZ8i8RFFznqU_ED6LWjfo8a-yLxYa1zNwOfDsBnk699ej3U6UlPK0CSv38KmQKBgatONo88ooXUZRYkRQFen9x6kE4D1aP0AnT-InCg0riGKQObGKNAW5wQkBno3lK4VFREc1PUDKEyP1cUDla8iMkmxQqqpXBdL7uoId91gjVhBRQK9k9vuLmvBdBZiz0YA78cgUo_KENF3ZdvFcwiVLvS4v59ALS2jHvoKfFHlDtvw" width={32} height={32} />
                 <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvhz8pu44ICC-vF98NtPRy-VgmHMX2Sv5VjMLSMgfYch8PQXGoBIntbb3cJXge4joR4P7pVOkkFu_FNAod7lGWZqFGcvUqzcUmuDzJA8Ja233igPS20YiPVa0MJSfjdH8gcgJ_7o9lVN7BsafstvhWqZDnFUvftmf9qyrkxUxvteuBR_kzvi6grsgsu8SaiSuyRKzdZ_u-SZIYyh7JdFBLqZrP3SO9nXZiF41htw8vIp9p_FLqVMaXlr1Dkv0-HVTDMeB5Aphpog" width={32} height={32} />
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-[#ece6dc] flex items-center justify-center text-[10px] font-bold text-secondary">+24</div>
+                <div className="w-8 h-8 rounded-full border-2 border-white bg-[#ece6dc] flex items-center justify-center text-[10px] font-bold text-[#605850]">+24</div>
               </div>
               <div className="flex items-center gap-1 text-primary">
                 <span className="text-xs font-bold">2 Slots Left</span>
@@ -88,8 +88,8 @@ export default function StudyGroupsPage() {
           <div className="flex items-center justify-between px-2">
             <h2 className="font-headline text-3xl text-[#3a302a]">Resource Library</h2>
             <div className="flex gap-2">
-              <button className="p-2 hover:bg-[#ece6dc] rounded-full transition-colors text-secondary"><span className="material-symbols-outlined">grid_view</span></button>
-              <button className="p-2 hover:bg-[#ece6dc] rounded-full transition-colors text-secondary"><span className="material-symbols-outlined">list</span></button>
+              <button className="p-2 hover:bg-[#ece6dc] rounded-full transition-colors text-[#605850]"><span className="material-symbols-outlined">grid_view</span></button>
+              <button className="p-2 hover:bg-[#ece6dc] rounded-full transition-colors text-[#605850]"><span className="material-symbols-outlined">list</span></button>
             </div>
           </div>
 
@@ -115,43 +115,43 @@ export default function StudyGroupsPage() {
               <div className="group p-4 rounded-xl border border-outline-variant/30 bg-[#f6f0e8] hover:bg-[#fbe8d8]/50 transition-all cursor-pointer">
                 <div className="flex items-center justify-between mb-3">
                   <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>folder</span>
-                  <span className="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
+                  <span className="material-symbols-outlined text-[#605850] opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
                 </div>
                 <h4 className="font-bold text-[#3a302a] mb-1 group-hover:text-primary transition-colors">Fall 2023 Curriculum</h4>
-                <p className="text-xs text-secondary font-medium">24 Files • Last update 2d ago</p>
+                <p className="text-xs text-[#605850] font-medium">24 Files • Last update 2d ago</p>
               </div>
 
               <div className="group p-4 rounded-xl border border-outline-variant/30 bg-[#f6f0e8] hover:bg-[#fbe8d8]/50 transition-all cursor-pointer">
                 <div className="flex items-center justify-between mb-3">
                   <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>folder</span>
-                  <span className="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
+                  <span className="material-symbols-outlined text-[#605850] opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
                 </div>
                 <h4 className="font-bold text-[#3a302a] mb-1 group-hover:text-primary transition-colors">Faculty Handbooks</h4>
-                <p className="text-xs text-secondary font-medium">12 Files • Last update 1w ago</p>
+                <p className="text-xs text-[#605850] font-medium">12 Files • Last update 1w ago</p>
               </div>
 
               <div className="group p-4 rounded-xl border border-outline-variant/30 bg-[#f6f0e8] hover:bg-[#fbe8d8]/50 transition-all cursor-pointer">
                 <div className="flex items-center justify-between mb-3">
                   <span className="material-symbols-outlined text-4xl text-[#8c3c3c]" style={{ fontVariationSettings: "'FILL' 1" }}>folder</span>
-                  <span className="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
+                  <span className="material-symbols-outlined text-[#605850] opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
                 </div>
                 <h4 className="font-bold text-[#3a302a] mb-1 group-hover:text-[#8c3c3c] transition-colors">Archived Research</h4>
-                <p className="text-xs text-secondary font-medium">156 Files • Last update 2022</p>
+                <p className="text-xs text-[#605850] font-medium">156 Files • Last update 2022</p>
               </div>
 
               <div className="group p-4 rounded-xl border border-outline-variant/30 bg-[#f6f0e8] hover:bg-[#fbe8d8]/50 transition-all cursor-pointer">
                 <div className="flex items-center justify-between mb-3">
                   <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>folder</span>
-                  <span className="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
+                  <span className="material-symbols-outlined text-[#605850] opacity-0 group-hover:opacity-100 transition-opacity">more_vert</span>
                 </div>
                 <h4 className="font-bold text-[#3a302a] mb-1 group-hover:text-primary transition-colors">Assessment Models</h4>
-                <p className="text-xs text-secondary font-medium">8 Files • Last update 4d ago</p>
+                <p className="text-xs text-[#605850] font-medium">8 Files • Last update 4d ago</p>
               </div>
             </div>
 
             {/* Recent Files List */}
             <div className="mt-8">
-              <h5 className="text-xs font-inter uppercase tracking-widest text-secondary font-bold mb-4">Recent Documents</h5>
+              <h5 className="text-xs font-inter uppercase tracking-widest text-[#605850] font-bold mb-4">Recent Documents</h5>
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-3 rounded-lg hover:bg-[#f6f0e8] transition-colors group cursor-pointer border border-transparent hover:border-outline-variant/30">
                   <div className="flex items-center gap-4">
@@ -160,10 +160,10 @@ export default function StudyGroupsPage() {
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-[#3a302a] group-hover:text-primary transition-colors">Structuralism_Intro_v2.pdf</div>
-                      <div className="text-[10px] text-secondary font-medium mt-0.5">Added by Dr. Aris • 1.2 MB</div>
+                      <div className="text-[10px] text-[#605850] font-medium mt-0.5">Added by Dr. Aris • 1.2 MB</div>
                     </div>
                   </div>
-                  <button className="material-symbols-outlined text-secondary group-hover:text-primary transition-colors hover:scale-110">download</button>
+                  <button className="material-symbols-outlined text-[#605850] group-hover:text-primary transition-colors hover:scale-110">download</button>
                 </div>
                 
                 <div className="flex items-center justify-between p-3 rounded-lg hover:bg-[#f6f0e8] transition-colors group cursor-pointer border border-transparent hover:border-outline-variant/30">
@@ -173,10 +173,10 @@ export default function StudyGroupsPage() {
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-[#3a302a] group-hover:text-primary transition-colors">Semester_Plan_Economics.docx</div>
-                      <div className="text-[10px] text-secondary font-medium mt-0.5">Added by Admin • 450 KB</div>
+                      <div className="text-[10px] text-[#605850] font-medium mt-0.5">Added by Admin • 450 KB</div>
                     </div>
                   </div>
-                  <button className="material-symbols-outlined text-secondary group-hover:text-primary transition-colors hover:scale-110">download</button>
+                  <button className="material-symbols-outlined text-[#605850] group-hover:text-primary transition-colors hover:scale-110">download</button>
                 </div>
               </div>
             </div>
@@ -191,7 +191,7 @@ export default function StudyGroupsPage() {
         </div>
         <div className="relative z-10 px-8 lg:px-12 max-w-xl">
           <h2 className="font-headline text-4xl mb-3 text-[#3a302a]">Institutional Wisdom</h2>
-          <p className="font-body text-secondary mb-6 italic text-lg leading-relaxed">
+          <p className="font-body text-[#605850] mb-6 italic text-lg leading-relaxed">
             "Education is not the filling of a pail, but the lighting of a fire."
           </p>
           <button className="text-primary font-bold flex items-center gap-2 group hover:text-[#B85D38] transition-colors">

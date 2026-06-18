@@ -38,7 +38,7 @@ export default function FacultyQAHubPage() {
       <header className="flex justify-between items-center w-full pb-6 border-b border-outline-variant/60">
         <div className="flex flex-col">
           <h2 className="font-headline text-3xl font-bold text-primary tracking-tight">Faculty Q&amp;A Hub</h2>
-          <p className="font-label text-sm text-on-surface-variant">Review pending academic doubts and student queries.</p>
+          <p className="font-label text-sm text-[#605850]">Review pending academic doubts and student queries.</p>
         </div>
         <div className="flex items-center gap-6">
           <div className="relative group hidden md:block">
@@ -57,13 +57,13 @@ export default function FacultyQAHubPage() {
       <section className="flex-1 overflow-hidden flex pt-6 gap-6">
         <aside className="w-72 bg-white rounded-xl p-6 border border-outline-variant/40 flex flex-col gap-8 shadow-sm hidden md:flex">
           <div>
-            <h3 className="font-inter text-xs font-bold uppercase tracking-widest text-secondary mb-4">Query Status</h3>
+            <h3 className="font-inter text-xs font-bold uppercase tracking-widest text-[#605850] mb-4">Query Status</h3>
             <ul className="space-y-2">
               {(["OPEN", "ANSWERED", "RESOLVED", "ALL"] as const).map((item) => (
                 <li key={item}>
                   <button
                     onClick={() => setStatus(item)}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all ${status === item ? "bg-primary/10 text-primary font-bold" : "text-on-surface-variant hover:bg-surface-variant/40 font-medium"}`}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all ${status === item ? "bg-primary/10 text-primary font-bold" : "text-[#605850] hover:bg-surface-variant/40 font-medium"}`}
                   >
                     <div className="flex items-center gap-3">
                       <span className="material-symbols-outlined text-xl">{item === "OPEN" ? "pending_actions" : "history"}</span>
@@ -75,11 +75,11 @@ export default function FacultyQAHubPage() {
             </ul>
           </div>
           <div>
-            <h3 className="font-inter text-xs font-bold uppercase tracking-widest text-secondary mb-4">Department</h3>
+            <h3 className="font-inter text-xs font-bold uppercase tracking-widest text-[#605850] mb-4">Department</h3>
             <div className="flex flex-wrap gap-2">
-              <button onClick={() => setSubjectId("")} className={`px-3 py-1 rounded-full border text-[11px] font-bold transition-all ${!subjectId ? "border-primary bg-primary/5 text-primary" : "border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary"}`}>All</button>
+              <button onClick={() => setSubjectId("")} className={`px-3 py-1 rounded-full border text-[11px] font-bold transition-all ${!subjectId ? "border-primary bg-primary/5 text-primary" : "border-outline-variant text-[#605850] hover:border-primary hover:text-primary"}`}>All</button>
               {subjects.map((subject) => (
-                <button key={subject.id} onClick={() => setSubjectId(subject.id)} className={`px-3 py-1 rounded-full border text-[11px] font-bold transition-all ${subjectId === subject.id ? "border-primary bg-primary/5 text-primary" : "border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary"}`}>
+                <button key={subject.id} onClick={() => setSubjectId(subject.id)} className={`px-3 py-1 rounded-full border text-[11px] font-bold transition-all ${subjectId === subject.id ? "border-primary bg-primary/5 text-primary" : "border-outline-variant text-[#605850] hover:border-primary hover:text-primary"}`}>
                   {subject.name}
                 </button>
               ))}
@@ -100,7 +100,7 @@ export default function FacultyQAHubPage() {
                     <div className="w-12 h-12 rounded-full overflow-hidden mb-0 sm:mb-2 border border-outline-variant/30 bg-[#fbe8d8] text-primary flex items-center justify-center font-bold">
                       {(inquiry.user?.name ?? "S").slice(0, 1)}
                     </div>
-                    <span className="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-tighter">{inquiry.status}</span>
+                    <span className="text-[10px] font-bold text-[#605850] uppercase tracking-tighter">{inquiry.status}</span>
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-2">
@@ -111,11 +111,11 @@ export default function FacultyQAHubPage() {
                       </div>
                       <span className="text-[11px] font-bold text-[#605850] bg-[#f2ece4] px-2 py-1 rounded uppercase tracking-widest ml-2 shrink-0">{inquiry.subject?.name ?? "Subject"}</span>
                     </div>
-                    <p className="font-body text-sm text-secondary mb-4 line-clamp-2">{inquiry.description}</p>
+                    <p className="font-body text-sm text-[#605850] mb-4 line-clamp-2">{inquiry.description}</p>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
                         <span className="font-headline italic text-sm text-primary font-bold">Student: {inquiry.user?.name ?? "Student"}</span>
-                        <span className="text-[11px] font-medium text-secondary flex items-center gap-1">
+                        <span className="text-[11px] font-medium text-[#605850] flex items-center gap-1">
                           <span className="material-symbols-outlined text-sm">schedule</span> {new Date(inquiry.createdAt).toLocaleDateString()}
                         </span>
                       </div>
@@ -127,7 +127,7 @@ export default function FacultyQAHubPage() {
                 </div>
               </div>
             ))}
-            {!doubts.length && <div className="bg-white p-10 rounded-2xl border border-dashed border-outline-variant/40 text-center text-secondary">No inquiries found.</div>}
+            {!doubts.length && <div className="bg-white p-10 rounded-2xl border border-dashed border-outline-variant/40 text-center text-[#605850]">No inquiries found.</div>}
           </div>
         </div>
       </section>

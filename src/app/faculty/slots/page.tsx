@@ -10,15 +10,15 @@ export default function SlotManagerPage() {
         <div className="flex justify-between items-end mb-8">
           <div>
             <h2 className="font-headline text-4xl text-on-surface leading-tight">Manage Availability</h2>
-            <p className="text-on-surface-variant mt-1">Week of Oct 23 – Oct 27, 2023</p>
+            <p className="text-[#605850] mt-1">Week of Oct 23 – Oct 27, 2023</p>
           </div>
           <div className="flex gap-3">
             <div className="flex items-center bg-surface-container rounded-lg p-1 border border-outline-variant/30">
-              <button className="p-2 hover:bg-surface-container-high rounded transition-colors material-symbols-outlined text-on-surface-variant">
+              <button className="p-2 hover:bg-surface-container-high rounded transition-colors material-symbols-outlined text-[#605850]">
                 chevron_left
               </button>
               <span className="px-4 text-sm font-medium">Today</span>
-              <button className="p-2 hover:bg-surface-container-high rounded transition-colors material-symbols-outlined text-on-surface-variant">
+              <button className="p-2 hover:bg-surface-container-high rounded transition-colors material-symbols-outlined text-[#605850]">
                 chevron_right
               </button>
             </div>
@@ -34,10 +34,10 @@ export default function SlotManagerPage() {
           {/* Day Header */}
           <div className="grid grid-cols-[80px_repeat(5,1fr)] bg-surface-container-low border-b border-outline-variant/50">
             <div className="flex items-center justify-center border-r border-outline-variant/30">
-              <span className="material-symbols-outlined text-on-surface-variant opacity-40">schedule</span>
+              <span className="material-symbols-outlined text-[#605850] opacity-40">schedule</span>
             </div>
             <div className="flex flex-col items-center justify-center py-3">
-              <span className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Mon</span>
+              <span className="text-[10px] uppercase tracking-widest text-[#605850] font-bold">Mon</span>
               <span className="text-xl font-headline">23</span>
             </div>
             <div className="flex flex-col items-center justify-center py-3 bg-primary/5">
@@ -45,15 +45,15 @@ export default function SlotManagerPage() {
               <span className="text-xl font-headline text-primary">24</span>
             </div>
             <div className="flex flex-col items-center justify-center py-3">
-              <span className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Wed</span>
+              <span className="text-[10px] uppercase tracking-widest text-[#605850] font-bold">Wed</span>
               <span className="text-xl font-headline">25</span>
             </div>
             <div className="flex flex-col items-center justify-center py-3">
-              <span className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Thu</span>
+              <span className="text-[10px] uppercase tracking-widest text-[#605850] font-bold">Thu</span>
               <span className="text-xl font-headline">26</span>
             </div>
             <div className="flex flex-col items-center justify-center py-3">
-              <span className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Fri</span>
+              <span className="text-[10px] uppercase tracking-widest text-[#605850] font-bold">Fri</span>
               <span className="text-xl font-headline">27</span>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function SlotManagerPage() {
                     <button className="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100">edit</button>
                   </div>
                   <p className="text-xs font-semibold text-on-surface mt-1">Open Office Hours</p>
-                  <p className="text-[10px] text-on-surface-variant">09:00 - 12:00</p>
+                  <p className="text-[10px] text-[#605850]">09:00 - 12:00</p>
                 </div>
               </div>
 
@@ -100,7 +100,7 @@ export default function SlotManagerPage() {
                     <div className="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-[8px]">ER</div>
                     <span className="font-cormorant text-sm font-semibold text-on-surface">Elena Rossi</span>
                   </div>
-                  <p className="text-[10px] text-on-surface-variant flex items-center gap-1">
+                  <p className="text-[10px] text-[#605850] flex items-center gap-1">
                     <span className="material-symbols-outlined text-[12px]">topic</span> Project Review
                   </p>
                 </div>
@@ -111,7 +111,7 @@ export default function SlotManagerPage() {
                 <div className="h-full w-full bg-[#B85D38]/10 border-l-4 border-[#B85D38] rounded-lg p-3 group hover:bg-[#B85D38]/20 cursor-pointer transition-all">
                   <span className="text-[10px] font-bold text-primary uppercase tracking-tighter">Teaching Slot</span>
                   <p className="text-xs font-semibold text-on-surface mt-1">Class: Modern Ethics</p>
-                  <p className="text-[10px] text-on-surface-variant">11:00 - 17:00</p>
+                  <p className="text-[10px] text-[#605850]">11:00 - 17:00</p>
                 </div>
               </div>
 
@@ -122,7 +122,7 @@ export default function SlotManagerPage() {
                     <div className="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-[8px]">MT</div>
                     <span className="font-cormorant text-sm font-semibold text-on-surface">Marcus Thorne</span>
                   </div>
-                  <p className="text-[10px] text-on-surface-variant flex items-center gap-1">
+                  <p className="text-[10px] text-[#605850] flex items-center gap-1">
                     <span className="material-symbols-outlined text-[12px]">chat</span> Quick Consultation
                   </p>
                 </div>
@@ -134,7 +134,7 @@ export default function SlotManagerPage() {
                     <div className="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-[8px]">SJ</div>
                     <span className="font-cormorant text-sm font-semibold text-on-surface">Sarah Jenkins</span>
                   </div>
-                  <p className="text-[10px] text-on-surface-variant flex items-center gap-1">
+                  <p className="text-[10px] text-[#605850] flex items-center gap-1">
                     <span className="material-symbols-outlined text-[12px]">grade</span> Grade Discussion
                   </p>
                 </div>
@@ -167,9 +167,9 @@ export default function SlotManagerPage() {
                 </div>
                 <div className="flex-1">
                   <p className="font-cormorant text-base font-bold leading-none">Elena Rossi</p>
-                  <p className="text-[10px] text-on-surface-variant mt-1">Project Review · 14:00</p>
+                  <p className="text-[10px] text-[#605850] mt-1">Project Review · 14:00</p>
                 </div>
-                <button className="material-symbols-outlined text-on-surface-variant/40 hover:text-primary">more_vert</button>
+                <button className="material-symbols-outlined text-[#605850]/40 hover:text-primary">more_vert</button>
               </div>
 
               <div className="flex items-start gap-4 p-3 bg-white rounded-xl shadow-sm border border-outline-variant/20 hover:border-primary/30 transition-colors">
@@ -179,9 +179,9 @@ export default function SlotManagerPage() {
                 </div>
                 <div className="flex-1">
                   <p className="font-cormorant text-base font-bold leading-none">Marcus Thorne</p>
-                  <p className="text-[10px] text-on-surface-variant mt-1">Quick Consultation · 15:30</p>
+                  <p className="text-[10px] text-[#605850] mt-1">Quick Consultation · 15:30</p>
                 </div>
-                <button className="material-symbols-outlined text-on-surface-variant/40 hover:text-primary">more_vert</button>
+                <button className="material-symbols-outlined text-[#605850]/40 hover:text-primary">more_vert</button>
               </div>
             </div>
             <button className="mt-auto pt-6 text-sm font-bold text-primary hover:underline flex items-center gap-1">
@@ -195,7 +195,7 @@ export default function SlotManagerPage() {
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between text-sm mb-2">
-                  <span className="text-on-surface-variant font-medium">Slot Fill Rate</span>
+                  <span className="text-[#605850] font-medium">Slot Fill Rate</span>
                   <span className="font-bold">78%</span>
                 </div>
                 <div className="w-full bg-outline-variant/30 h-1.5 rounded-full overflow-hidden">
@@ -204,11 +204,11 @@ export default function SlotManagerPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 bg-white rounded-xl border border-outline-variant/20">
-                  <p className="text-xs text-on-surface-variant font-medium">Total Sessions</p>
+                  <p className="text-xs text-[#605850] font-medium">Total Sessions</p>
                   <p className="text-2xl font-headline font-bold text-primary">124</p>
                 </div>
                 <div className="p-4 bg-white rounded-xl border border-outline-variant/20">
-                  <p className="text-xs text-on-surface-variant font-medium">Waitlisted</p>
+                  <p className="text-xs text-[#605850] font-medium">Waitlisted</p>
                   <p className="text-2xl font-headline font-bold text-tertiary">12</p>
                 </div>
               </div>

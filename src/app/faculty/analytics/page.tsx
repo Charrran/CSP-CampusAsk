@@ -42,7 +42,7 @@ export default function AnalyticsPage() {
         <div className="mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <p className="font-inter text-[#8c3c3c] font-bold tracking-widest uppercase text-xs mb-2">Faculty Performance</p>
           <h1 className="font-display text-5xl text-[#3a302a] font-semibold leading-tight">Teaching Impact Dashboard</h1>
-          <p className="font-body text-secondary mt-3 text-lg max-w-2xl">A curated overview of your academic impact, answer volume, and response performance.</p>
+          <p className="font-body text-[#605850] mt-3 text-lg max-w-2xl">A curated overview of your academic impact, answer volume, and response performance.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -56,13 +56,13 @@ export default function AnalyticsPage() {
               <div className="font-headline text-7xl text-[#8c3c3c] font-bold leading-none tracking-tighter">
                 {analytics?.avgResponseTimeHours ?? 0}<span className="text-3xl">h</span>
               </div>
-              <p className="font-inter text-sm text-secondary mt-4 leading-relaxed">Average time from student doubt creation to your faculty response.</p>
+              <p className="font-inter text-sm text-[#605850] mt-4 leading-relaxed">Average time from student doubt creation to your faculty response.</p>
             </div>
           </div>
 
           <div className="bg-white border border-outline-variant/60 shadow-[0_2px_16px_rgba(58,48,42,0.04)] rounded-xl col-span-1 md:col-span-2 p-8 hover:shadow-lg transition-shadow duration-300">
             <h3 className="font-inter text-[#3a302a] font-semibold mb-1 text-sm uppercase tracking-wider">Answer Quality</h3>
-            <p className="font-inter text-xs text-secondary mb-4 uppercase tracking-wider font-semibold">Average Upvotes Per Answer</p>
+            <p className="font-inter text-xs text-[#605850] mb-4 uppercase tracking-wider font-semibold">Average Upvotes Per Answer</p>
             <div className="flex items-baseline gap-2">
               <span className="font-headline text-6xl text-[#3a302a] font-bold">{analytics?.avgUpvotesPerAnswer ?? 0}</span>
               <span className="font-inter text-lg text-outline font-medium">votes</span>
@@ -79,7 +79,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h3 className="font-inter text-[#3a302a] font-semibold text-sm uppercase tracking-wider">Answers By Subject</h3>
-                <p className="font-inter text-sm text-secondary mt-1">Distribution of your faculty responses.</p>
+                <p className="font-inter text-sm text-[#605850] mt-1">Distribution of your faculty responses.</p>
               </div>
             </div>
             <div className="space-y-5">
@@ -87,14 +87,14 @@ export default function AnalyticsPage() {
                 <div key={subject.name}>
                   <div className="flex justify-between text-sm mb-2">
                     <span className="text-[#3a302a] font-bold">{subject.name}</span>
-                    <span className="text-secondary font-bold">{subject.count}</span>
+                    <span className="text-[#605850] font-bold">{subject.count}</span>
                   </div>
                   <div className="w-full bg-[#f2ece4] rounded-full h-2 overflow-hidden">
                     <div className="bg-primary h-full rounded-full" style={{ width: `${(subject.count / maxSubjectCount) * 100}%` }}></div>
                   </div>
                 </div>
               ))}
-              {!analytics?.answersBySubject.length && <p className="text-sm text-secondary">No answer distribution available yet.</p>}
+              {!analytics?.answersBySubject.length && <p className="text-sm text-[#605850]">No answer distribution available yet.</p>}
             </div>
           </div>
 

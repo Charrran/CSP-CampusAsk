@@ -130,7 +130,7 @@ export default function HomePage() {
             <span className="material-symbols-outlined text-[#f0a878] text-4xl">gavel</span>
             <div>
               <h4 className="font-headline text-2xl mb-2">Fair Moderation</h4>
-              <p className="text-[#ece6dc] text-sm">Ensuring a safe, scholarly environment for all participants.</p>
+            <p className="text-[#f6f0e8] text-sm">Ensuring a safe, scholarly environment for all participants.</p>
             </div>
           </div>
           <div className="md:col-span-8 md:row-span-1 bg-[#f2ece4] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 rounded-3xl p-8 flex items-center gap-10 border border-outline-variant/30">
@@ -203,9 +203,9 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto bg-[#3a302a] rounded-[2rem] p-12 md:p-24 text-center relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="font-headline text-5xl md:text-7xl text-white mb-8">Begin the Transition Today.</h2>
-            <p className="text-[#ece6dc] text-xl max-w-2xl mx-auto mb-12">
-              Join hundreds of institutions already bridging the digital divide with Vidya Setu's academic infrastructure.
-            </p>
+          <p className="text-[#f6f0e8] text-xl max-w-2xl mx-auto mb-12">
+            Join hundreds of institutions already bridging the digital divide with Vidya Setu's academic infrastructure.
+          </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/register" className="bg-primary text-white px-10 py-5 rounded-xl font-label font-bold text-lg hover:bg-primary/90 shadow-2xl transition-all">
                 Register Your School

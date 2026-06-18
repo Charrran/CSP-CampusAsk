@@ -56,7 +56,7 @@ export default function AdminUsersPage() {
       <header className="sticky top-0 z-50 flex flex-col md:flex-row md:justify-between items-start md:items-center w-full pb-8 bg-[#faf5ee]">
         <div className="mb-4 md:mb-0">
           <h2 className="font-headline text-4xl font-bold text-primary tracking-tight">Admin User Management</h2>
-          <p className="text-secondary font-body mt-1">Managing CampusAsk scholars and faculty</p>
+          <p className="text-[#605850] font-body mt-1">Managing CampusAsk scholars and faculty</p>
         </div>
         <div className="flex items-center gap-4">
           <div className="relative">
@@ -85,7 +85,7 @@ export default function AdminUsersPage() {
               <div className={`${index === 2 ? "bg-white/20 text-white" : "bg-primary/10 text-primary"} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}>
                 <span className="material-symbols-outlined">{icon}</span>
               </div>
-              <p className={`${index === 2 ? "text-white/90" : "text-secondary"} font-label text-sm uppercase tracking-widest font-semibold`}>{label}</p>
+              <p className={`${index === 2 ? "text-white/90" : "text-[#605850]"} font-label text-sm uppercase tracking-widest font-semibold`}>{label}</p>
               <h3 className={`${index === 2 ? "text-white" : "text-[#3a302a]"} font-headline text-5xl font-bold mt-2`}>{value}</h3>
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function AdminUsersPage() {
           <h3 className="font-headline text-2xl font-bold text-[#3a302a]">Manage Members</h3>
           <div className="flex bg-white border border-outline-variant/60 rounded-lg p-1 shadow-sm">
             {(["ALL", "STUDENT", "FACULTY", "ADMIN"] as const).map((item) => (
-              <button key={item} onClick={() => { setRole(item); setPage(1); }} className={`px-4 py-1 text-xs font-bold rounded-md ${role === item ? "bg-primary text-white shadow-sm" : "text-secondary hover:text-primary transition-colors"}`}>
+              <button key={item} onClick={() => { setRole(item); setPage(1); }} className={`px-4 py-1 text-xs font-bold rounded-md ${role === item ? "bg-primary text-white shadow-sm" : "text-[#605850] hover:text-primary transition-colors"}`}>
                 {item}
               </button>
             ))}
@@ -125,7 +125,7 @@ export default function AdminUsersPage() {
                       </div>
                       <div>
                         <p className="font-bold text-[#3a302a]">{member.name}</p>
-                        <p className="text-xs text-secondary mt-0.5">{member.email}</p>
+                        <p className="text-xs text-[#605850] mt-0.5">{member.email}</p>
                       </div>
                     </div>
                   </td>
@@ -142,7 +142,7 @@ export default function AdminUsersPage() {
                       <span className={`w-2 h-2 rounded-full ${member.isActive ? "bg-green-600" : "bg-[#8c3c3c]"}`}></span> {member.isActive ? "Active" : "Inactive"}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-secondary font-medium">{new Date(member.createdAt).toLocaleDateString()}</td>
+                  <td className="px-6 py-4 text-[#605850] font-medium">{new Date(member.createdAt).toLocaleDateString()}</td>
                   <td className="px-6 py-4 text-right">
                     <button onClick={() => updateUser(member.id, { isActive: !member.isActive })} className="px-3 py-1 text-xs font-bold bg-white border border-outline-variant/60 rounded-lg text-[#3a302a] hover:bg-[#f6f0e8] transition-all shadow-sm">
                       {member.isActive ? "Deactivate" : "Activate"}
@@ -151,18 +151,18 @@ export default function AdminUsersPage() {
                 </tr>
               ))}
               {!users.length && (
-                <tr><td colSpan={6} className="px-6 py-12 text-center text-secondary font-medium">No users found.</td></tr>
+                <tr><td colSpan={6} className="px-6 py-12 text-center text-[#605850] font-medium">No users found.</td></tr>
               )}
             </tbody>
           </table>
         </div>
         <div className="px-6 py-4 bg-[#f2ece4]/50 border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-secondary font-medium">Page <span className="font-bold text-[#3a302a]">{page}</span> of <span className="font-bold text-[#3a302a]">{totalPages}</span></p>
+          <p className="text-xs text-[#605850] font-medium">Page <span className="font-bold text-[#3a302a]">{page}</span> of <span className="font-bold text-[#3a302a]">{totalPages}</span></p>
           <div className="flex items-center gap-2">
-            <button onClick={() => setPage((current) => Math.max(1, current - 1))} disabled={page <= 1} className="p-2 bg-white border border-outline-variant/60 rounded-lg text-secondary hover:bg-[#f6f0e8] disabled:opacity-50 shadow-sm">
+            <button onClick={() => setPage((current) => Math.max(1, current - 1))} disabled={page <= 1} className="p-2 bg-white border border-outline-variant/60 rounded-lg text-[#605850] hover:bg-[#f6f0e8] disabled:opacity-50 shadow-sm">
               <span className="material-symbols-outlined text-sm">chevron_left</span>
             </button>
-            <button onClick={() => setPage((current) => Math.min(totalPages, current + 1))} disabled={page >= totalPages} className="p-2 bg-white border border-outline-variant/60 rounded-lg text-secondary hover:bg-[#f6f0e8] disabled:opacity-50 shadow-sm">
+            <button onClick={() => setPage((current) => Math.min(totalPages, current + 1))} disabled={page >= totalPages} className="p-2 bg-white border border-outline-variant/60 rounded-lg text-[#605850] hover:bg-[#f6f0e8] disabled:opacity-50 shadow-sm">
               <span className="material-symbols-outlined text-sm">chevron_right</span>
             </button>
           </div>

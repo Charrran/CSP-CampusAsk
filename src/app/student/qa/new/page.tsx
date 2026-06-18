@@ -82,15 +82,15 @@ export default function NewInquiryPage() {
             Formalize your academic doubts within our ecosystem. Your inquiry will be triaged to the appropriate faculty member for a detailed resolution.
           </p>
           <div className="mt-8 flex flex-col gap-4">
-            <div className="flex items-center gap-3 text-sm text-secondary font-label">
+            <div className="flex items-center gap-3 text-sm text-[#605850] font-label">
               <span className="material-symbols-outlined text-primary" style={{ fontSize: "20px" }}>info</span>
               <span>Response time: ~24 Academic Hours</span>
             </div>
-            <div className="flex items-center gap-3 text-sm text-secondary font-label">
+            <div className="flex items-center gap-3 text-sm text-[#605850] font-label">
               <span className="material-symbols-outlined text-primary" style={{ fontSize: "20px" }}>visibility</span>
               <span>Private to Faculty &amp; Moderators</span>
             </div>
-            <div className="flex items-center gap-3 text-sm text-secondary font-label">
+            <div className="flex items-center gap-3 text-sm text-[#605850] font-label">
               <span className="material-symbols-outlined text-primary" style={{ fontSize: "20px" }}>rule</span>
               <span>Minimum: title, chapter, and premise</span>
             </div>
@@ -115,7 +115,7 @@ export default function NewInquiryPage() {
       <form onSubmit={handleSubmit} className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Section 1: Subject Selection */}
         <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300 md:col-span-2">
-          <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Academic Domain</label>
+          <label className="block font-label text-xs uppercase tracking-widest text-[#605850] mb-3 font-bold">Academic Domain</label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {domains.map((domain) => (
               <button
@@ -139,7 +139,7 @@ export default function NewInquiryPage() {
         </div>
 
         <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300">
-          <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Inquiry Title</label>
+          <label className="block font-label text-xs uppercase tracking-widest text-[#605850] mb-3 font-bold">Inquiry Title</label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -149,7 +149,7 @@ export default function NewInquiryPage() {
         </div>
 
         <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300">
-          <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Chapter</label>
+          <label className="block font-label text-xs uppercase tracking-widest text-[#605850] mb-3 font-bold">Chapter</label>
           <select
             value={chapterId}
             onChange={(e) => setChapterId(e.target.value)}
@@ -163,7 +163,7 @@ export default function NewInquiryPage() {
 
         {/* Section 2: Inquiry Premise (Rich Text Area) */}
         <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300 md:col-span-2">
-          <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Inquiry Premise</label>
+          <label className="block font-label text-xs uppercase tracking-widest text-[#605850] mb-3 font-bold">Inquiry Premise</label>
           <div className="border border-outline-variant/60 bg-white rounded-md focus-within:ring-1 focus-within:ring-primary focus-within:border-primary transition-all overflow-hidden">
             <div className="flex items-center gap-2 p-2 border-b border-outline-variant/40 bg-[#f6f0e8]">
               <button type="button" className="material-symbols-outlined p-1 rounded hover:bg-[#ece6dc] transition-colors text-sm" title="Bold">format_bold</button>
@@ -184,7 +184,7 @@ export default function NewInquiryPage() {
 
         {/* Section 3: Tag Input */}
         <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300">
-          <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Relevant Taxonomies</label>
+          <label className="block font-label text-xs uppercase tracking-widest text-[#605850] mb-3 font-bold">Relevant Taxonomies</label>
           <div className="flex flex-wrap gap-2 mb-4">
             {tags.map((tag) => (
               <span key={tag} className="px-3 py-1 bg-[#fbe8d8] text-[#8a4518] rounded text-xs font-label flex items-center gap-1 font-semibold border border-[#c2652a]/20">
@@ -206,7 +206,7 @@ export default function NewInquiryPage() {
         {/* Section 4: Urgency & Submission */}
         <div className="p-6 bg-[#faf5ee] rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
           <div>
-            <label className="block font-label text-xs uppercase tracking-widest text-secondary mb-3 font-bold">Attachment URL</label>
+            <label className="block font-label text-xs uppercase tracking-widest text-[#605850] mb-3 font-bold">Attachment URL</label>
             <input
               value={attachment}
               onChange={(e) => setAttachment(e.target.value)}
