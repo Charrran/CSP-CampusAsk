@@ -35,7 +35,7 @@ export default function AdminDashboardPage() {
       description: "Registered users",
       icon: Users,
       trend: `${analytics?.users.students ?? 0} students, ${analytics?.users.faculty ?? 0} faculty`,
-      color: "text-blue-600 bg-blue-100",
+      color: "text-[#8a4518] bg-[#fbe8d8]",
     },
     {
       title: "Total Doubts",
@@ -43,7 +43,7 @@ export default function AdminDashboardPage() {
       description: "Questions posted",
       icon: MessageSquare,
       trend: `${analytics?.doubts.open ?? 0} open`,
-      color: "text-emerald-600 bg-emerald-100",
+      color: "text-[#3a302a] bg-[#ece6dc]",
     },
     {
       title: "Total Subjects",
@@ -51,7 +51,7 @@ export default function AdminDashboardPage() {
       description: "Available subjects",
       icon: BookOpen,
       trend: "Academic catalog",
-      color: "text-amber-600 bg-amber-100",
+      color: "text-[#8c3c3c] bg-[#fce0e0]",
     },
     {
       title: "Pending Moderation",
@@ -59,17 +59,17 @@ export default function AdminDashboardPage() {
       description: "Items to review",
       icon: Shield,
       trend: moderationCount ? "Needs review" : "Nothing to moderate",
-      color: "text-violet-600 bg-violet-100",
+      color: "text-[#3a302a] bg-[#f2ece4]",
     },
   ];
 
   return (
     <div className="space-y-8">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-500/10 via-violet-500/5 to-transparent border border-violet-500/10 p-6 lg:p-8">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#fbe8d8] via-[#faf5ee] to-transparent border border-[#e3dacd] p-6 lg:p-8">
         <div className="relative z-10">
           <Badge variant="secondary" className="mb-3 text-xs font-medium">Admin Portal</Badge>
           <h2 className="text-2xl font-bold tracking-tight">Hello, {user?.name?.split(" ")[0] || "Admin"}</h2>
-          <p className="text-muted-foreground mt-1 max-w-lg">Manage users, subjects, and moderate platform activity from your admin dashboard.</p>
+          <p className="text-[#605850] mt-1 max-w-lg">Manage users, subjects, and moderate platform activity from your admin dashboard.</p>
           <Link href="/admin/users">
             <Button className="mt-4 gap-2 cursor-pointer" size="sm">
               Manage Users <ArrowRight className="h-4 w-4" />
@@ -84,14 +84,14 @@ export default function AdminDashboardPage() {
           return (
             <Card key={stat.title} className="relative overflow-hidden transition-all duration-200 hover:shadow-md hover:border-primary/20 group">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">{stat.title}</CardTitle>
+                <CardTitle className="text-sm font-medium text-[#605850]">{stat.title}</CardTitle>
                 <div className={`h-8 w-8 rounded-lg flex items-center justify-center ${stat.color} transition-transform duration-200 group-hover:scale-110`}>
                   <Icon className="h-4 w-4" />
                 </div>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{stat.value}</div>
-                <p className="text-xs text-muted-foreground mt-1">{stat.trend}</p>
+                <p className="text-xs text-[#605850] mt-1">{stat.trend}</p>
               </CardContent>
             </Card>
           );
@@ -112,7 +112,7 @@ export default function AdminDashboardPage() {
             ))}
             {!analytics?.subjectStats.length && (
               <div className="flex flex-col items-center justify-center py-12 text-center">
-                <Shield className="h-6 w-6 text-muted-foreground mb-4" />
+                <Shield className="h-6 w-6 text-[#605850] mb-4" />
                 <h3 className="font-medium text-foreground">No activity yet</h3>
               </div>
             )}

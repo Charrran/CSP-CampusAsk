@@ -71,11 +71,11 @@ export default function LoginPage() {
           <blockquote className="text-[#F4F1ED] font-cormorant italic text-5xl leading-tight mb-8">
             "Vidya dadati vinayam, vinaya dadyati patratam."
           </blockquote>
-          <p className="text-outline-variant font-inter text-sm leading-relaxed tracking-wide">
+          <p className="text-[#e8dccc] font-inter text-sm leading-relaxed tracking-wide">
             Knowledge gives humility, from humility comes worthiness, from worthiness one attains wealth, from wealth one does good deeds, and from that comes joy.
           </p>
         </div>
-        <div className="z-10 flex gap-8 text-outline-variant font-inter text-[10px] uppercase tracking-widest opacity-60">
+        <div className="z-10 flex gap-8 text-[#e8dccc] font-inter text-[10px] uppercase tracking-widest opacity-80">
           <span>Academic Excellence</span>
           <span>Institutional Security</span>
           <span>Est. 2024</span>
@@ -92,14 +92,14 @@ export default function LoginPage() {
         <div className="w-full max-w-md space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
           <header className="space-y-2">
             <h2 className="text-4xl font-headline text-[#291B15] font-semibold">Access Portal</h2>
-            <p className="text-on-surface-variant font-inter text-sm">Please authenticate with your institutional credentials.</p>
+            <p className="text-[#605850] font-inter text-sm">Please authenticate with your institutional credentials.</p>
           </header>
           
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-5">
               {/* Email Input */}
               <div className="group">
-                  <label className="block text-[11px] font-inter font-bold uppercase tracking-wider text-on-surface-variant mb-2 transition-colors group-focus-within:text-on-surface" htmlFor="email">
+                  <label className="block text-[11px] font-inter font-bold uppercase tracking-wider text-[#605850] mb-2 transition-colors group-focus-within:text-[#3a302a]" htmlFor="email">
                   Institutional Email
                 </label>
                 <div className="relative">
@@ -110,7 +110,7 @@ export default function LoginPage() {
                     placeholder="name@university.edu"
                     type="email"
                   />
-                  <span className="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 text-outline/40 text-lg group-focus-within:text-on-surface pointer-events-none">
+                  <span className="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 text-[#9a9088] text-lg group-focus-within:text-[#3a302a] pointer-events-none">
                     alternate_email
                   </span>
                 </div>
@@ -120,10 +120,10 @@ export default function LoginPage() {
               {/* Password Input */}
               <div className="group">
                 <div className="flex justify-between items-center mb-2">
-                  <label className="block text-[11px] font-inter font-bold uppercase tracking-wider text-secondary transition-colors group-focus-within:text-primary" htmlFor="password">
+                  <label className="block text-[11px] font-inter font-bold uppercase tracking-wider text-[#605850] transition-colors group-focus-within:text-[#3a302a]" htmlFor="password">
                     Secure Key
                   </label>
-                  <Link href="#" className="text-[10px] font-inter font-semibold uppercase text-primary hover:text-tertiary transition-colors tracking-tighter">
+                  <Link href="#" className="text-[10px] font-inter font-semibold uppercase text-[#8a4518] hover:text-[#c2652a] transition-colors tracking-tighter">
                     Lost Access?
                   </Link>
                 </div>
@@ -138,7 +138,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 text-outline/40 text-lg hover:text-on-surface transition-colors"
+                    className="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 text-[#9a9088] text-lg hover:text-[#3a302a] transition-colors"
                   >
                     {showPassword ? "visibility_off" : "visibility"}
                   </button>
@@ -153,7 +153,7 @@ export default function LoginPage() {
                 <div className="relative flex items-center">
                   <input className="peer h-4 w-4 rounded-sm border-outline-variant text-primary focus:ring-primary/20 transition-all" type="checkbox" />
                 </div>
-                <span className="text-xs font-inter text-secondary group-hover:text-[#291B15] transition-colors">Trust this terminal for 30 days</span>
+                <span className="text-xs font-inter text-[#605850] group-hover:text-[#3a302a] transition-colors">Trust this terminal for 30 days</span>
               </label>
             </div>
 
@@ -183,19 +183,19 @@ export default function LoginPage() {
             >
               New user? Register here
             </Link>
-            <div className="flex gap-6 text-[10px] font-inter uppercase tracking-widest text-secondary font-semibold">
-              <Link className="hover:text-primary transition-colors" href="#">Help Desk</Link>
-              <span className="text-outline-variant opacity-30">|</span>
-              <Link className="hover:text-primary transition-colors" href="#">Privacy Policy</Link>
-              <span className="text-outline-variant opacity-30">|</span>
-              <Link className="hover:text-primary transition-colors" href="/register">Register</Link>
+            <div className="flex gap-6 text-[10px] font-inter uppercase tracking-widest text-[#605850] font-semibold">
+              <Link className="hover:text-[#8a4518] transition-colors" href="#">Help Desk</Link>
+              <span className="text-[#9a9088] opacity-40">|</span>
+              <Link className="hover:text-[#8a4518] transition-colors" href="#">Privacy Policy</Link>
+              <span className="text-[#9a9088] opacity-40">|</span>
+              <Link className="hover:text-[#8a4518] transition-colors" href="/register">Register</Link>
             </div>
           </footer>
         </div>
 
         {/* Atmospheric Elements */}
         <div className="absolute bottom-8 right-8 pointer-events-none opacity-20">
-          <span className="font-display italic text-8xl text-outline-variant select-none">Setu</span>
+          <span className="font-display italic text-8xl text-[#9a9088] select-none">Setu</span>
         </div>
       </main>
     </div>
