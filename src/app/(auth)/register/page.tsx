@@ -32,6 +32,7 @@ export default function RegisterPage() {
     },
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const selectedRole = watch("role");
 
   async function handleNextStep(targetStep: 1 | 2 | 3) {

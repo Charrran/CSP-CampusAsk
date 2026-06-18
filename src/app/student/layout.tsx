@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { LogoutButton } from "@/components/logout-button";
 
 export default function StudentLayout({ children }: { children: ReactNode }) {
   return (
@@ -49,6 +50,10 @@ export default function StudentLayout({ children }: { children: ReactNode }) {
               <span className="material-symbols-outlined">settings</span>
               <span className="text-sm font-medium tracking-tight">Settings</span>
             </Link>
+            <LogoutButton className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-all text-left">
+              <span className="material-symbols-outlined">logout</span>
+              <span className="text-sm font-medium tracking-tight">Logout</span>
+            </LogoutButton>
           </div>
         </nav>
       </aside>

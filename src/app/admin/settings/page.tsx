@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 export default function AdminSettingsPage() {
   const [emailSummary, setEmailSummary] = useState(true);
@@ -31,10 +32,12 @@ export default function AdminSettingsPage() {
           
           <div className="flex flex-col sm:flex-row items-start gap-8 z-10">
             <div className="relative group shrink-0">
-              <img 
+              <Image 
                 alt="User Avatar" 
                 className="w-32 h-32 rounded-2xl object-cover border-4 border-white shadow-sm" 
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSX57LiltAaW5sJvQz-nNERrlWb5ZKmd1WAwXnz_Zp_Q9OPyDfKWEyjMZVWJ4buFK4-8QOUbcYozlPpvv_aHcqXtR5nTGRp7GJtWvJvMx7HQ3yzq0xNRI57PEoJatPlCfJTfe0UJ-jvFb3QzMOaY73lrPNd-mJyRz0QR7Gg7iV5tt9SAJ5cx1WekD48kkfsq5jF2NeX0ri5bh2m79L_nOwbZaNNzo_8f4B9CLTMcrmK_zBNbZaPj7m5Ee_sBKl1IrEshdhNRQaWw"
+                width={128}
+                height={128}
               />
               <button className="absolute -bottom-2 -right-2 p-2 bg-primary text-white rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95">
                 <span className="material-symbols-outlined text-sm">edit</span>

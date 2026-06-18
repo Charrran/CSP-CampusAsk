@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
+import { hash } from "bcryptjs";
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL! });
 const adapter = new PrismaPg(pool);
@@ -50,6 +51,20 @@ async function main() {
       `  ✅ ${created.name} — ${created.chapters.length} chapters`
     );
   }
+
+  console.log("👤 Seeding default admin...");
+  const adminPassword = await hash("Admin@123", 10);
+  const admin = await prisma.user.upsert({
+    where: { email: "admin@campusask.edu" },
+    update: { password: adminPassword },
+    create: {
+      name: "System Administrator",
+      email: "admin@campusask.edu",
+      password: adminPassword,
+      role: "ADMIN",
+    },
+  });
+  console.log(`  ✅ Admin created: ${admin.email}`);
 
   console.log("\n🎉 Seeding complete!");
 }

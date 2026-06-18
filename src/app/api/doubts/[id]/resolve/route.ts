@@ -1,7 +1,6 @@
 import { NextRequest } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { z } from "zod";
 
 // PATCH /api/doubts/[id] — student resolves their own doubt (ANSWERED → RESOLVED)
 export async function PATCH(

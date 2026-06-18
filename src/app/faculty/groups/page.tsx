@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 export default function StudyGroupsPage() {
   return (
@@ -34,9 +35,9 @@ export default function StudyGroupsPage() {
             <p className="text-sm text-secondary mb-6 line-clamp-2">Weekly discussion focusing on the architectural shift post-1945 and its social implications.</p>
             <div className="flex items-center justify-between border-t border-outline-variant/40 pt-4">
               <div className="flex -space-x-2">
-                <img alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWdfJx-hv5UVgeGXb4jK6h9Q90bgEMav3SpOR69A8WtIZBi51dxeynX1avsN9Ix7MZ4oRhi45oKHbCJUloYoYfjdFQdRq46Bm8M71CEx4LEtw0Z4NqbXOSw4AQiEFf0elQpouYtZgii_iB2vieIyR0Om9wiiAPRlu0zY6-Rod-Q_TrrfMXnzfBAQB_8iiVTaZmagewfHSMe3r0fL6lPIcagLMXEc0piPHzpwWL-HSVMZVTuCK9kpdx6N6OFzqzgDB9K0JJdWuLag" />
-                <img alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXSZxWYhA-AjqTHRDlpV4bTAbUtNK_E1kgTkqC3hKR9fOPZbrgYp_aD5bUnTKK13vRpCmfFjrIJlja6GzsAMq_cV1n1-ciD_RwSs8yYXVRj0rmSHXXQnMoZTASVReXXuKSZaooZqg_hjnldxUhLbo1NX6wjACCecmRtBRRE32PS7H7v_aDagBp7QoYAobJpQdQCFbT0IeQKs1G0L8rL4T0Eg4caQ5KynPTNWNAgkwHyOMTkzQvFfaB8rOEGXGodLJOjUFa0lZHcw" />
-                <img alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuUrKSghFKrOt1JLGBeWDL0xE_dQxxO0WeNBPSq6fQ4pzkAkz_-Q794jlHOw35O9lrTSU0Cg4bsHiYrLrMv8PwIda7hWJzRvxmKhyDt-xLzwpSTCnjWDDSs6jjL1M07OYjRP9TdudN39FXYOvT1YXoGOVnQAzfE9ZEbM2Qvl5TQtWf7Cqw6kAm8A1iqtQsFoR7nhkWK8ErlLZaanXRPBb3xtYoM5fUhVyQLZnQjmoiOFh4MrIEQOND6_L49AewMV65pWFQZN3KGw" />
+                <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWdfJx-hv5UVgeGXb4jK6h9Q90bgEMav3SpOR69A8WtIZBi51dxeynX1avsN9Ix7MZ4oRhi45oKHbCJUloYoYfjdFQdRq46Bm8M71CEx4LEtw0Z4NqbXOSw4AQiEFf0elQpouYtZgii_iB2vieIyR0Om9wiiAPRlu0zY6-Rod-Q_TrrfMXnzfBAQB_8iiVTaZmagewfHSMe3r0fL6lPIcagLMXEc0piPHzpwWL-HSVMZVTuCK9kpdx6N6OFzqzgDB9K0JJdWuLag" width={32} height={32} />
+                <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXSZxWYhA-AjqTHRDlpV4bTAbUtNK_E1kgTkqC3hKR9fOPZbrgYp_aD5bUnTKK13vRpCmfFjrIJlja6GzsAMq_cV1n1-ciD_RwSs8yYXVRj0rmSHXXQnMoZTASVReXXuKSZaooZqg_hjnldxUhLbo1NX6wjACCecmRtBRRE32PS7H7v_aDagBp7QoYAobJpQdQCFbT0IeQKs1G0L8rL4T0Eg4caQ5KynPTNWNAgkwHyOMTkzQvFfaB8rOEGXGodLJOjUFa0lZHcw" width={32} height={32} />
+                <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuUrKSghFKrOt1JLGBeWDL0xE_dQxxO0WeNBPSq6fQ4pzkAkz_-Q794jlHOw35O9lrTSU0Cg4bsHiYrLrMv8PwIda7hWJzRvxmKhyDt-xLzwpSTCnjWDDSs6jjL1M07OYjRP9TdudN39FXYOvT1YXoGOVnQAzfE9ZEbM2Qvl5TQtWf7Cqw6kAm8A1iqtQsFoR7nhkWK8ErlLZaanXRPBb3xtYoM5fUhVyQLZnQjmoiOFh4MrIEQOND6_L49AewMV65pWFQZN3KGw" width={32} height={32} />
                 <div className="w-8 h-8 rounded-full border-2 border-white bg-[#ece6dc] flex items-center justify-center text-[10px] font-bold text-secondary">+12</div>
               </div>
               <div className="flex items-center gap-1 text-primary">
@@ -58,8 +59,8 @@ export default function StudyGroupsPage() {
             <p className="text-sm text-secondary mb-6 line-clamp-2">Exploring the narrative structures of South Asian magical realism in the 20th century.</p>
             <div className="flex items-center justify-between border-t border-outline-variant/40 pt-4">
               <div className="flex -space-x-2">
-                <img alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC8dwxEthz0DfX6uukHUPIM1PK91P3PTCZ8i8RFFznqU_ED6LWjfo8a-yLxYa1zNwOfDsBnk699ej3U6UlPK0CSv38KmQKBgatONo88ooXUZRYkRQFen9x6kE4D1aP0AnT-InCg0riGKQObGKNAW5wQkBno3lK4VFREc1PUDKEyP1cUDla8iMkmxQqqpXBdL7uoId91gjVhBRQK9k9vuLmvBdBZiz0YA78cgUo_KENF3ZdvFcwiVLvS4v59ALS2jHvoKfFHlDtvw" />
-                <img alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvhz8pu44ICC-vF98NtPRy-VgmHMX2Sv5VjMLSMgfYch8PQXGoBIntbb3cJXge4joR4P7pVOkkFu_FNAod7lGWZqFGcvUqzcUmuDzJA8Ja233igPS20YiPVa0MJSfjdH8gcgJ_7o9lVN7BsafstvhWqZDnFUvftmf9qyrkxUxvteuBR_kzvi6grsgsu8SaiSuyRKzdZ_u-SZIYyh7JdFBLqZrP3SO9nXZiF41htw8vIp9p_FLqVMaXlr1Dkv0-HVTDMeB5Aphpog" />
+                <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC8dwxEthz0DfX6uukHUPIM1PK91P3PTCZ8i8RFFznqU_ED6LWjfo8a-yLxYa1zNwOfDsBnk699ej3U6UlPK0CSv38KmQKBgatONo88ooXUZRYkRQFen9x6kE4D1aP0AnT-InCg0riGKQObGKNAW5wQkBno3lK4VFREc1PUDKEyP1cUDla8iMkmxQqqpXBdL7uoId91gjVhBRQK9k9vuLmvBdBZiz0YA78cgUo_KENF3ZdvFcwiVLvS4v59ALS2jHvoKfFHlDtvw" width={32} height={32} />
+                <Image alt="Student" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvhz8pu44ICC-vF98NtPRy-VgmHMX2Sv5VjMLSMgfYch8PQXGoBIntbb3cJXge4joR4P7pVOkkFu_FNAod7lGWZqFGcvUqzcUmuDzJA8Ja233igPS20YiPVa0MJSfjdH8gcgJ_7o9lVN7BsafstvhWqZDnFUvftmf9qyrkxUxvteuBR_kzvi6grsgsu8SaiSuyRKzdZ_u-SZIYyh7JdFBLqZrP3SO9nXZiF41htw8vIp9p_FLqVMaXlr1Dkv0-HVTDMeB5Aphpog" width={32} height={32} />
                 <div className="w-8 h-8 rounded-full border-2 border-white bg-[#ece6dc] flex items-center justify-center text-[10px] font-bold text-secondary">+24</div>
               </div>
               <div className="flex items-center gap-1 text-primary">
@@ -199,10 +200,11 @@ export default function StudyGroupsPage() {
           </button>
         </div>
         <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-1/3">
-          <img 
+          <Image 
             alt="Library Stacks" 
             className="w-full h-full object-cover grayscale-[50%] opacity-40 mix-blend-multiply" 
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYfVEQl1d8TWYUpgK1XpS8B9niKwlWFIyU4iKOLGwfi0Uto6kw6GYDvf-2iASXaXcpo76M4aEJ4KS9HXMuvsC5mKs9OVbb8mzpdOoRDHy65M88D73EKF7Y2w5TVhJ174Nc15zZyyJkT4IfJuX-eSgS6rwSumeZUuUxRcIk3WIbm6J89nHda2S42GYRF5P3J-J1LHTPLKr5xsfKfFo5mWrHWbob1k_Vaee62RFNIJS-SIrS1agCGDQcGZ5Zwc5DGIhYtmva_Ho5Hw"
+            fill
           />
         </div>
       </section>

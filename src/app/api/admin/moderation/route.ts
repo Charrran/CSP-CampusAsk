@@ -1,9 +1,9 @@
-import { NextRequest } from "next/server";
+// Removed NextRequest import
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 
 // GET /api/admin/moderation — list all flagged doubts and answers
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const session = await getSession();
     if (!session || session.role !== "ADMIN") {

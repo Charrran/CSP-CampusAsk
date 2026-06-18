@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { toast } from "sonner";
 import { fetchJson } from "@/lib/api";
 
@@ -95,11 +96,13 @@ export default function NewInquiryPage() {
             </div>
           </div>
         </div>
+        
         <div className="relative overflow-hidden h-64 rounded-xl border border-outline-variant/40 shadow-sm hover:shadow-md transition-all duration-300">
-          <img 
+          <Image 
             className="w-full h-full object-cover opacity-80" 
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi5P5UoMsa2guXv2JS6bFAsbImmQkk4TcaRdr78Z4x68GcWMPKPMNLogmBFPW3B_ct-PK3irIwLlLCOqcF16symb6eWN4iwdvMvIDdA_H6VyEC2Kc9K6pjKT9kXUdaD3pzzNMHf_97JEd6VMVByTbfwC22vkhSXnKQ0PpUczzfaVlXEn5Sd7aj8YYWwo_kJmxBP3MLiLZYh7znAxugkKmTyrukvn8jkF3VryjQje8UwNARy8JGSYijrDqhU3sRZV0fvB0PIJoivQ" 
-            alt="Library Book" 
+            alt="Library Book"
+            fill 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#faf5ee]/90 to-transparent flex flex-col justify-end p-6">
             <span className="font-label text-xs uppercase tracking-[0.2em] text-primary font-bold">Vidya Setu Legacy</span>

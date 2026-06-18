@@ -1,7 +1,7 @@
-import { NextRequest } from "next/server";
+// Removed NextRequest import
 import { db } from "@/lib/db";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const subjects = await db.subject.findMany({
       include: {

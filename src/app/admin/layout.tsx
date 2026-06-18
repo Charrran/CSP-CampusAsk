@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { LogoutButton } from "@/components/logout-button";
 import { usePathname } from "next/navigation";
 
 export default function AdminLayout({
@@ -77,10 +78,10 @@ export default function AdminLayout({
             <span className="material-symbols-outlined">settings</span>
             <span className="font-label font-medium text-sm">Settings</span>
           </Link>
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-[#ece6dc] hover:bg-white/10">
+          <LogoutButton className="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-[#ece6dc] hover:bg-white/10 text-left">
             <span className="material-symbols-outlined">logout</span>
             <span className="font-label font-medium text-sm">Logout</span>
-          </button>
+          </LogoutButton>
         </div>
       </aside>
 

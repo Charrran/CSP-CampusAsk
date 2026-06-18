@@ -65,7 +65,7 @@ export default function SlotManagerPage() {
               {[
                 "08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
                 "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"
-              ].map((time, idx) => (
+              ].map((time) => (
                 <React.Fragment key={time}>
                   <div className="font-body text-xs text-[#605850] text-right pr-4 pt-4 border-r border-outline-variant/40">
                     {time}

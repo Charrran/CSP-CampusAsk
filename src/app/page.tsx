@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function HomePage() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
@@ -55,10 +56,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <header className="relative min-h-[870px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             alt="Scholarly Setting" 
             className="w-full h-full object-cover" 
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEAiJFX3j3ei3zBJC2KqcLRTOc9GF1pnYFnRzv5HDibqkZENBMM9_E7Me8yzE7MuSuQjWfS2yww-4cCVYfTWbn45ksO-qrS-vZV3cOKjf9BNFOShnLHK0CdJZh-pvz7WFYrFLg8k6sPDcdp7RAa8dpZwnwNbHlsMh4tJxofOEOKhug9efvLSnb6QH2OYQqSpqsGG-g6pJS_mAjQFIlbJD0taBJMu9dHnLTWqxYR0J46O0JGqeaupmlJt8WPvqzFeWjc4sxS0Oz7w" 
+            fill
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1a120c]/90 to-[#1a120c]/40"></div>
         </div>
@@ -104,7 +107,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="relative h-48 mt-8 overflow-hidden rounded-xl">
-              <img alt="Discussion" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwR80RZANVsLKlhwUZUZzNA27yMXDYIWSgEiAMIRygarmkCteoN8BgaGDGFQPHOCJrlczU3GNzq3io0iS9rVuG8n84IadhW4SeCebN2LprBqKE7W8uc-XyKXGOAz9EOt6Z5UiY3bNMHEzvi9GVZvX9rb0n14dQIaf8D_aDwQhiJZBUrDQhhoBj_Fak-6kUZFdhf-R7usVUzDsV-tGDdKuvFbEGwxHJcFLBqv-VEn4wzxcJFRphVXxinjglho0goUWHvfcZClnfxA"/>
+              <Image alt="Discussion" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwR80RZANVsLKlhwUZUZzNA27yMXDYIWSgEiAMIRygarmkCteoN8BgaGDGFQPHOCJrlczU3GNzq3io0iS9rVuG8n84IadhW4SeCebN2LprBqKE7W8uc-XyKXGOAz9EOt6Z5UiY3bNMHEzvi9GVZvX9rb0n14dQIaf8D_aDwQhiJZBUrDQhhoBj_Fak-6kUZFdhf-R7usVUzDsV-tGDdKuvFbEGwxHJcFLBqv-VEn4wzxcJFRphVXxinjglho0goUWHvfcZClnfxA" fill />
             </div>
           </div>
           {/* Schedule & Logs */}
@@ -136,7 +139,7 @@ export default function HomePage() {
               <p className="text-on-surface-variant text-sm">Moving traditional government school infrastructure into the cloud, ensuring data integrity and accessibility for rural and urban sectors alike.</p>
             </div>
             <div className="hidden sm:block w-40 h-full bg-white/50 rounded-2xl overflow-hidden">
-              <img alt="Academic growth" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATgDGRFs69F2YtyRM5LdI46BxhTT3vLmV2_A0gA3dQEt2iWAT3ZOcJQwA9xHy9wgYy7mQGo69fzFZTyrju7POn8U_AAvdDiTGY-iMZ_4H1xvwSNvZ6n3eZA-3f8fBJA4b6F5uSBFMC26pjLfoGicogtOt88lLlWfTXo_Le5qxGi_HgjCy3tZnvTnkAchGu6uI0le6D3m4p5ahwnVdZbMwOFEz7pwoWO2jvETUxJuv-TsdROjfSAvdR3ZUAFl20KMAEpe1HSgeyNQ"/>
+              <Image alt="Academic growth" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATgDGRFs69F2YtyRM5LdI46BxhTT3vLmV2_A0gA3dQEt2iWAT3ZOcJQwA9xHy9wgYy7mQGo69fzFZTyrju7POn8U_AAvdDiTGY-iMZ_4H1xvwSNvZ6n3eZA-3f8fBJA4b6F5uSBFMC26pjLfoGicogtOt88lLlWfTXo_Le5qxGi_HgjCy3tZnvTnkAchGu6uI0le6D3m4p5ahwnVdZbMwOFEz7pwoWO2jvETUxJuv-TsdROjfSAvdR3ZUAFl20KMAEpe1HSgeyNQ" fill />
             </div>
           </div>
         </div>
@@ -174,7 +177,7 @@ export default function HomePage() {
       >
         <div className="relative">
           <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full z-0"></div>
-          <img alt="Educator" className="rounded-3xl shadow-xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACZQX3LGND5rbfdRA9r8JhxTuB6ntXFjbT933mWpYuE-TcRs6N0s8orUrjnejBki8a-ylLwvyAEQzrjWqtFy76tqT5Bv3TBCRpAY716z-mKhZho87qi7tJPtyc6EYTUnFcAGrHovSPhvtWDz-QicXmEIS1OZJnoA3U_qEg6NtN9mbKHAz5ACkPyagM7AsqQDiKJyNf0U27b1kQE0pGgMUz_EUAQXAGCmd5aARmCvScMGjC8_hhFm5wJGnTCaCgEtMKxT_hWJJQMQ"/>
+          <Image alt="Educator" className="rounded-3xl shadow-xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACZQX3LGND5rbfdRA9r8JhxTuB6ntXFjbT933mWpYuE-TcRs6N0s8orUrjnejBki8a-ylLwvyAEQzrjWqtFy76tqT5Bv3TBCRpAY716z-mKhZho87qi7tJPtyc6EYTUnFcAGrHovSPhvtWDz-QicXmEIS1OZJnoA3U_qEg6NtN9mbKHAz5ACkPyagM7AsqQDiKJyNf0U27b1kQE0pGgMUz_EUAQXAGCmd5aARmCvScMGjC8_hhFm5wJGnTCaCgEtMKxT_hWJJQMQ" width={600} height={400} />
         </div>
         <div>
           <span className="text-[#8c3c3c] font-label font-bold uppercase tracking-widest text-sm">Faculty Feedback</span>
