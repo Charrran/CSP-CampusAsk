@@ -24,6 +24,7 @@ export default function RegisterPage() {
     setValue,
     watch,
     trigger,
+    getValues,
     formState: { errors },
   } = useForm<RegisterInput & { confirmPassword?: string, institution?: string, terms?: boolean }>({
     resolver: zodResolver(registerSchema),
@@ -48,11 +49,12 @@ export default function RegisterPage() {
   }
 
   async function onSubmit(data: RegisterInput & { confirmPassword?: string; institution?: string; terms?: boolean }) {
-    if (data.password !== data.confirmPassword) {
+    const formValues = getValues();
+    if (data.password !== formValues.confirmPassword) {
       toast.error("Passwords do not match");
       return;
     }
-    if (!data.terms) {
+    if (!formValues.terms) {
       toast.error("Please agree to the Terms of Service");
       return;
     }
