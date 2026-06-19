@@ -145,60 +145,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Impact Stats */}
-      <section 
-        className="bg-[#f6f0e8] py-20 border-y border-outline-variant/30"
-        ref={(el) => { sectionsRef.current[1] = el; }}
-      >
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-          <div>
-            <p className="font-headline text-5xl text-primary mb-2">1,200+</p>
-            <p className="font-label text-xs uppercase tracking-widest text-on-surface-variant">Schools Onboarded</p>
-          </div>
-          <div>
-            <p className="font-headline text-5xl text-primary mb-2">850k</p>
-            <p className="font-label text-xs uppercase tracking-widest text-on-surface-variant">Active Students</p>
-          </div>
-          <div>
-            <p className="font-headline text-5xl text-primary mb-2">94%</p>
-            <p className="font-label text-xs uppercase tracking-widest text-on-surface-variant">Inquiry Resolution</p>
-          </div>
-          <div>
-            <p className="font-headline text-5xl text-primary mb-2">24/7</p>
-            <p className="font-label text-xs uppercase tracking-widest text-on-surface-variant">Portal Access</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Faculty Perspective */}
-      <section 
-        className="py-24 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center"
-        ref={(el) => { sectionsRef.current[2] = el; }}
-      >
-        <div className="relative">
-          <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full z-0"></div>
-          <Image alt="Educator" className="rounded-3xl shadow-xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACZQX3LGND5rbfdRA9r8JhxTuB6ntXFjbT933mWpYuE-TcRs6N0s8orUrjnejBki8a-ylLwvyAEQzrjWqtFy76tqT5Bv3TBCRpAY716z-mKhZho87qi7tJPtyc6EYTUnFcAGrHovSPhvtWDz-QicXmEIS1OZJnoA3U_qEg6NtN9mbKHAz5ACkPyagM7AsqQDiKJyNf0U27b1kQE0pGgMUz_EUAQXAGCmd5aARmCvScMGjC8_hhFm5wJGnTCaCgEtMKxT_hWJJQMQ" width={600} height={400} />
-        </div>
-        <div>
-          <span className="text-[#8c3c3c] font-label font-bold uppercase tracking-widest text-sm">Faculty Feedback</span>
-          <h2 className="font-headline text-4xl md:text-5xl mt-4 mb-8 text-[#3a302a]">Empowering Educators to Lead.</h2>
-          <blockquote className="text-2xl font-headline italic text-on-surface-variant mb-8 leading-relaxed">
-            "Vidya Setu has fundamentally changed how I interact with my students. It has removed the administrative barriers, allowing me to focus on what matters most: mentoring the next generation of leaders."
-          </blockquote>
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">DR</div>
-            <div>
-              <p className="font-bold text-[#3a302a]">Dr. Rajeshwari Iyer</p>
-              <p className="text-on-surface-variant text-sm">Principal, Govt. Model School, Bengaluru</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section 
         className="mb-24 px-6"
-        ref={(el) => { sectionsRef.current[3] = el; }}
+        ref={(el) => { sectionsRef.current[1] = el; }}
       >
         <div className="max-w-7xl mx-auto bg-[#3a302a] rounded-[2rem] p-12 md:p-24 text-center relative overflow-hidden">
           <div className="relative z-10">
