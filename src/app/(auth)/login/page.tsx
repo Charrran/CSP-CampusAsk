@@ -123,9 +123,9 @@ export default function LoginPage() {
                   <label className="block text-[11px] font-inter font-bold uppercase tracking-wider text-[#605850] transition-colors group-focus-within:text-[#3a302a]" htmlFor="password">
                     Secure Key
                   </label>
-                  <Link href="#" className="text-[10px] font-inter font-semibold uppercase text-[#8a4518] hover:text-[#c2652a] transition-colors tracking-tighter">
+                  <button type="button" className="text-[10px] font-inter font-semibold uppercase text-[#8a4518] hover:text-[#c2652a] transition-colors tracking-tighter">
                     Lost Access?
-                  </Link>
+                  </button>
                 </div>
                 <div className="relative">
                   <input
@@ -184,9 +184,7 @@ export default function LoginPage() {
               New user? Register here
             </Link>
             <div className="flex gap-6 text-[10px] font-inter uppercase tracking-widest text-[#605850] font-semibold">
-              <Link className="hover:text-[#8a4518] transition-colors" href="#">Help Desk</Link>
-              <span className="text-[#9a9088] opacity-40">|</span>
-              <Link className="hover:text-[#8a4518] transition-colors" href="#">Privacy Policy</Link>
+              <Link className="hover:text-[#8a4518] transition-colors" href="/privacy-policy">Privacy Policy</Link>
               <span className="text-[#9a9088] opacity-40">|</span>
               <Link className="hover:text-[#8a4518] transition-colors" href="/register">Register</Link>
             </div>

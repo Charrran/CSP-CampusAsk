@@ -77,9 +77,6 @@ export default function HomePage() {
               <Link href="/register" className="bg-primary text-white px-8 py-4 rounded-lg font-label font-bold hover:bg-primary/90 transition-all shadow-lg active:scale-95 inline-block">
                 Initialize Portal
               </Link>
-              <button className="border border-white/30 text-white px-8 py-4 rounded-lg font-label font-bold hover:bg-white/10 transition-all backdrop-blur-sm inline-block">
-                View Case Studies
-              </button>
             </div>
           </div>
         </div>
@@ -175,10 +172,10 @@ export default function HomePage() {
           <p className="text-on-surface-variant font-label text-xs uppercase tracking-wider">© 2024 CampusAsk Academic Systems</p>
         </div>
         <div className="flex gap-8">
-          <Link className="text-on-surface-variant hover:text-primary transition-colors font-label text-xs uppercase tracking-wider" href="#">Privacy Policy</Link>
-          <Link className="text-on-surface-variant hover:text-primary transition-colors font-label text-xs uppercase tracking-wider" href="#">Terms of Service</Link>
-          <Link className="text-on-surface-variant hover:text-primary transition-colors font-label text-xs uppercase tracking-wider" href="#">Faculty Handbook</Link>
-          <Link className="text-on-surface-variant hover:text-primary transition-colors font-label text-xs uppercase tracking-wider" href="#">Support</Link>
+          <Link className="text-on-surface-variant hover:text-primary transition-colors font-label text-xs uppercase tracking-wider" href="/privacy-policy">Privacy Policy</Link>
+          <span className="text-on-surface-variant font-label text-xs uppercase tracking-wider">Terms of Service</span>
+          <span className="text-on-surface-variant font-label text-xs uppercase tracking-wider">Faculty Handbook</span>
+          <span className="text-on-surface-variant font-label text-xs uppercase tracking-wider">Support</span>
         </div>
       </footer>
     </div>
