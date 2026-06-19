@@ -138,7 +138,7 @@ export default function HomePage() {
               <h4 className="font-headline text-2xl mb-2 text-[#3a302a]">Digital Transformation</h4>
               <p className="text-on-surface-variant text-sm">Moving traditional government school infrastructure into the cloud, ensuring data integrity and accessibility for rural and urban sectors alike.</p>
             </div>
-            <div className="hidden sm:block w-40 h-full bg-white/50 rounded-2xl overflow-hidden">
+            <div className="relative hidden sm:block w-40 h-full bg-white/50 rounded-2xl overflow-hidden">
               <Image alt="Academic growth" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATgDGRFs69F2YtyRM5LdI46BxhTT3vLmV2_A0gA3dQEt2iWAT3ZOcJQwA9xHy9wgYy7mQGo69fzFZTyrju7POn8U_AAvdDiTGY-iMZ_4H1xvwSNvZ6n3eZA-3f8fBJA4b6F5uSBFMC26pjLfoGicogtOt88lLlWfTXo_Le5qxGi_HgjCy3tZnvTnkAchGu6uI0le6D3m4p5ahwnVdZbMwOFEz7pwoWO2jvETUxJuv-TsdROjfSAvdR3ZUAFl20KMAEpe1HSgeyNQ" fill />
             </div>
           </div>
