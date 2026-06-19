@@ -180,7 +180,7 @@ export function Sidebar({ navItems }: SidebarProps) {
       </aside>
 
       {/* Desktop sidebar */}
-      <aside className="sticky top-0 hidden h-screen w-[260px] border-r border-sidebar-border bg-sidebar lg:block">
+      <aside className="fixed inset-y-0 left-0 hidden w-[260px] border-r border-sidebar-border bg-sidebar lg:block lg:overflow-y-auto">
         {sidebarContent}
       </aside>
     </>

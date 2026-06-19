@@ -197,14 +197,14 @@ export default function BookingPage() {
           <div>
             <span className="material-symbols-outlined text-4xl opacity-50 mb-4">calendar_month</span>
             <h3 className="text-3xl font-headline leading-tight mb-4">Upcoming Requests</h3>
-            <p className="text-sm text-[#605850]">Track faculty responses and consultation times from your latest booking requests.</p>
+            <p className="text-sm text-[#b08a57]">Track faculty responses and consultation times from your latest booking requests.</p>
           </div>
 
           <div className="space-y-4">
             {meetings.map((meeting) => (
               <div key={meeting.id} className="bg-white/10 border border-white/10 rounded-md p-4">
                 <p className="font-professor text-xl text-white">{meeting.faculty?.name ?? selectedFaculty?.name ?? "Faculty"}</p>
-                    <p className="text-xs text-[#605850] mt-1">{meeting.subject?.name ?? "Academic consultation"}</p>
+                <p className="mt-1 text-xs text-[#e7c98f]">{meeting.subject?.name ?? "Academic consultation"}</p>
                 <div className="mt-3 flex items-center justify-between text-xs font-bold">
                   <span>{new Date(meeting.requestedTime).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}</span>
                   <span className="bg-surface text-on-surface px-2 py-1 rounded">{meeting.status}</span>
@@ -212,7 +212,7 @@ export default function BookingPage() {
               </div>
             ))}
             {!meetings.length && (
-              <div className="bg-white/10 border border-white/10 rounded-md p-6 text-sm text-[#605850]">
+              <div className="bg-white/10 border border-white/10 rounded-md p-6 text-sm text-[#e7c98f]">
                 No meetings requested yet.
               </div>
             )}
