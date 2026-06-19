@@ -18,26 +18,15 @@ export default function StudentLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="antialiased min-h-screen flex w-full overflow-x-hidden font-body bg-[#F4F1ED] text-[#291B15]">
-      {/* Mobile Backdrop */}
-      {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-30 md:hidden transition-opacity"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
-
       {/* Left Sidebar (Rich Umber/Espresso) */}
       <aside
-        className="w-[280px] flex-shrink-0 sticky top-0 h-screen text-white flex flex-col p-6 z-10 hidden md:flex overflow-y-auto"
+        className="w-[280px] flex-shrink-0 fixed left-0 top-0 h-screen text-white flex flex-col p-6 z-10 hidden md:flex overflow-y-auto"
         style={{ backgroundColor: "#291B15" }}
       >
         <div className="mb-10 pl-2 flex justify-between items-center">
           <h1 className="text-white text-3xl font-semibold font-body tracking-tight">
             CampusAsk
           </h1>
-          <button className="md:hidden text-white/70 hover:text-white" onClick={() => setIsSidebarOpen(false)}>
-            <span className="material-symbols-outlined">close</span>
-          </button>
         </div>
         <nav className="flex flex-col gap-2 flex-1">
           <Link
