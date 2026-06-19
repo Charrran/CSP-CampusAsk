@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -46,6 +46,21 @@ export function Sidebar({ navItems }: SidebarProps) {
   const pathname = usePathname();
   const { user, logout } = useAuth();
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileOpen]);
+
   const initials = user?.name
     ?.split(" ")
     .map((n) => n[0])
@@ -54,7 +69,7 @@ export function Sidebar({ navItems }: SidebarProps) {
     .slice(0, 2) || "?";
 
   const sidebarContent = (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col overflow-hidden">
       {/* Brand */}
       <div className="flex items-center gap-3 px-5 py-5">
         <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-sidebar-primary text-sidebar-primary-foreground font-bold text-sm shadow-md">
@@ -73,7 +88,7 @@ export function Sidebar({ navItems }: SidebarProps) {
       <Separator className="bg-sidebar-border mx-4 w-auto" />
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
         {navItems.map((item) => {
           const Icon = iconMap[item.icon] || LayoutDashboard;
           const isActive = pathname === item.href;
@@ -138,8 +153,10 @@ export function Sidebar({ navItems }: SidebarProps) {
       {/* Mobile hamburger */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-card border border-border shadow-sm cursor-pointer"
+        className="lg:hidden fixed left-4 top-4 z-[60] rounded-lg border border-border bg-card p-2 shadow-sm cursor-pointer"
         aria-label="Toggle sidebar"
+        aria-expanded={mobileOpen}
+        aria-controls="mobile-sidebar"
       >
         {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </button>
@@ -147,17 +164,23 @@ export function Sidebar({ navItems }: SidebarProps) {
       {/* Mobile overlay */}
       {mobileOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
+          className="lg:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
           onClick={() => setMobileOpen(false)}
         />
       )}
 
-      {/* Sidebar - Desktop: fixed left; Mobile: overlay */}
+      {/* Mobile drawer */}
       <aside
-        className={`fixed top-0 left-0 z-40 h-screen w-[260px] bg-sidebar border-r border-sidebar-border transition-transform duration-300 ease-in-out ${
+        id="mobile-sidebar"
+        className={`fixed inset-y-0 left-0 z-50 w-[260px] border-r border-sidebar-border bg-sidebar shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0`}
+        }`}
       >
+        {sidebarContent}
+      </aside>
+
+      {/* Desktop sidebar */}
+      <aside className="fixed inset-y-0 left-0 hidden w-[260px] border-r border-sidebar-border bg-sidebar lg:block lg:overflow-y-auto">
         {sidebarContent}
       </aside>
     </>

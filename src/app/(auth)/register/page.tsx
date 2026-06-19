@@ -314,7 +314,7 @@ export default function RegisterPage() {
                     type="checkbox"
                   />
                   <label className="text-xs text-on-surface-variant leading-relaxed" htmlFor="terms">
-                    I agree to the <Link className="text-primary underline" href="#">Terms of Service</Link> and <Link className="text-primary underline" href="#">Privacy Policy</Link>. I understand that my profile will be subjected to institutional verification.
+                    I agree to the <span className="text-primary underline">Terms of Service</span> and <Link className="text-primary underline" href="/privacy-policy">Privacy Policy</Link>. I understand that my profile will be subjected to institutional verification.
                   </label>
                 </div>
               </div>
